@@ -14,14 +14,7 @@ export default class App extends React.Component {
     this.state = {
       plants: [
         {
-          common_name: "tarovine",
-          scientific_name: "Monstera deliciosa",
-          genus: "Monstera",
-          duration: "Perennial",
-          image: "https://upload.wikimedia.org/wikipedia/commons/0/04/Monstera_deliciosa3.jpg",
-          note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-        },
-        {
+          id: "157554",
           common_name: "tarovine",
           scientific_name: "Monstera deliciosa",
           genus: "Monstera",
@@ -30,6 +23,7 @@ export default class App extends React.Component {
           note: ''
         },
         {
+          id: "157554",
           common_name: "tarovine",
           scientific_name: "Monstera deliciosa",
           genus: "Monstera",
@@ -38,6 +32,7 @@ export default class App extends React.Component {
           note: ''
         },
         {
+          id: "157554",
           common_name: "tarovine",
           scientific_name: "Monstera deliciosa",
           genus: "Monstera",
@@ -45,6 +40,7 @@ export default class App extends React.Component {
           image: "https://upload.wikimedia.org/wikipedia/commons/0/04/Monstera_deliciosa3.jpg",
           note: ''
         },
+
       ]
     }
   }
@@ -57,11 +53,18 @@ export default class App extends React.Component {
     this.setState(newState)
   }
 
+  addPlant = (newPlant) => {
+    const newPlants = [...this.state.plants]
+    newPlants.push(newPlant)
+    const newState = { plants: newPlants }
+    this.setState(newState)
+  }
+
   render() {
     return (
-      <div className="app" >
+      <div className="app">
         <Header />
-        <h2 style={{ backgroundColor: 'yellow', textAlign: 'center' }}>This is just a demo. Please take a moment to <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScdox25FniERn2kj8FeQ7NKcxT4rrgI6f0TF0snnW07Y9g_vw/viewform?usp=sf_link">leave feedback on this form.</a> Thanks!</h2>
+        {/* <h2 style={{ backgroundColor: 'yellow', textAlign: 'center' }}>This is just a demo. Please take a moment to <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScdox25FniERn2kj8FeQ7NKcxT4rrgI6f0TF0snnW07Y9g_vw/viewform?usp=sf_link">leave feedback on this form.</a> Thanks!</h2> */}
         <main className="main">
 
           <Switch>
@@ -77,7 +80,7 @@ export default class App extends React.Component {
             />
             <Route
               path={'/garden/:username'}
-              render={() => <Garden plants={this.props.plants} updateNote={this.updateNote} />}
+              render={() => <Garden plants={this.state.plants} updateNote={this.updateNote} />}
             />
             <Route
               exact
@@ -86,9 +89,10 @@ export default class App extends React.Component {
             />
             <Route
               path={'/plant/:plant_id'}
-              component={PlantDetails}
+              render={(r) => <PlantDetails addPlant={this.addPlant} router={r} />}
             />
           </Switch>
+
         </main >
         <Footer />
       </div>

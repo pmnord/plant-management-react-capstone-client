@@ -6,50 +6,14 @@ export default class PlantSearch extends React.Component {
         super(props);
         this.state = {
             searchResults: [
-
                 {
-                    common_name: "tarovine",
-                    scientific_name: "Monstera deliciosa",
-                    genus: "Monstera",
-                    duration: "Perennial",
-                    image: "https://upload.wikimedia.org/wikipedia/commons/0/04/Monstera_deliciosa3.jpg",
+                    "slug": "monstera-acreana",
+                    "scientific_name": "Monstera acreana",
+                    "link": "http://trefle.io/api/plants/222225",
+                    "id": 222225,
+                    "complete_data": false,
+                    "common_name": null
                 },
-                {
-                    common_name: "tarovine",
-                    scientific_name: "Monstera deliciosa",
-                    genus: "Monstera",
-                    duration: "Perennial",
-                    image: "https://upload.wikimedia.org/wikipedia/commons/0/04/Monstera_deliciosa3.jpg",
-                },
-                {
-                    common_name: "tarovine",
-                    scientific_name: "Monstera deliciosa",
-                    genus: "Monstera",
-                    duration: "Perennial",
-                    image: "https://upload.wikimedia.org/wikipedia/commons/0/04/Monstera_deliciosa3.jpg",
-                },
-                {
-                    common_name: "tarovine",
-                    scientific_name: "Monstera deliciosa",
-                    genus: "Monstera",
-                    duration: "Perennial",
-                    image: "https://upload.wikimedia.org/wikipedia/commons/0/04/Monstera_deliciosa3.jpg",
-                },
-                {
-                    common_name: "tarovine",
-                    scientific_name: "Monstera deliciosa",
-                    genus: "Monstera",
-                    duration: "Perennial",
-                    image: "https://upload.wikimedia.org/wikipedia/commons/0/04/Monstera_deliciosa3.jpg",
-                },
-                {
-                    common_name: "tarovine",
-                    scientific_name: "Monstera deliciosa",
-                    genus: "Monstera",
-                    duration: "Perennial",
-                    image: "https://upload.wikimedia.org/wikipedia/commons/0/04/Monstera_deliciosa3.jpg",
-                },
-
             ]
         }
     }
@@ -59,14 +23,18 @@ export default class PlantSearch extends React.Component {
             <section className="plant-search">
                 <form>
                     <label>Common Name</label>
-                    <input type="text" />
+                    <input type="text" value="Monstera acreana" />
                 </form>
 
                 <ul className="plant-search__search-results">
                     {this.state.searchResults.map((result, idx) => {
                         return (
-                            <Link to="/plant/testplant" key={idx}>
-                                <li>{result.common_name} <em>{result.scientific_name}</em></li>
+                            <Link to={`/plant/${result.id}`} key={idx}>
+                                <li className="plant-search__list-item">
+                                    <h3><strong>{result.scientific_name}</strong></h3>
+                                    <p>Common Name: {result.common_name || ''}</p>
+                                    <p>Complete Data: {String(result.complete_data)}</p>
+                                </li>
                             </Link>
                         )
                     })}

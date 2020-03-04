@@ -43,8 +43,6 @@ export default class Garden extends React.Component {
         }
     }
 
-
-
     render() {
         return (
             <div className='garden'>
@@ -54,7 +52,7 @@ export default class Garden extends React.Component {
                     </Link>
                 </section>
                 <section className="plant-grid">
-                    {this.state.plants.map((plant, idx) => <PlantCard key={idx} plant={plant} updateNote={this.updateNote} idx={idx} />)}
+                    {this.props.plants.map((plant, idx) => <PlantCard key={idx} plant={plant} updateNote={this.props.updateNote} idx={idx} />)}
                 </section>
             </div>
         )
