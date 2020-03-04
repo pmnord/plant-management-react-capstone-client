@@ -15,9 +15,9 @@ export default class LoginForm extends React.Component {
         this.setState({ error: null })
 
         const { username, password } = e.target
-        const credentials = { 
-            username: username.value, 
-            password: password.value, 
+        const credentials = {
+            username: username.value,
+            password: password.value,
         }
 
         fetch(`${config.API_ENDPOINT}/auth/login`, {
@@ -27,35 +27,37 @@ export default class LoginForm extends React.Component {
             },
             body: JSON.stringify(credentials),
         })
-        .then(res => {
-            if (!res.ok) return res.json().then(err => Promise.reject(err))
-            return res.json()
-        })
-        .then(res => {
-            console.log(res)
-            TokenService.setToken(res.authToken)
-        })
-        .catch(err => {
-            this.setState({ error: err.error }) // Not working
-        })
-
+            .then(res => {
+                if (!res.ok) return res.json().then(err => Promise.reject(err))
+                return res.json()
+            })
+            .then(res => {
+                console.log(res)
+                TokenService.setToken(res.authToken)
+                this.props.history.push(`/garden/${credentials.username}`) // change this so it's coming from db
+            })
+            .catch(err => {
+                this.setState({ error: err.error })
+            })
     }
 
     render() {
         return (
-            <form className="login" onSubmit={this.handleLoginSubmit}>
-                <div>
-                    <label htmlFor="username">Username</label>
-                    <input type="text" name="username" />
-                </div>
+            <div>
+                <form className="login" onSubmit={() => { this.props.history.push(`/garden/dunder`) }}>
+                    <div>
+                        <label htmlFor="username">Username</label>
+                        <input type="text" name="username" value="dunder" />
+                    </div>
 
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <input type="password" name="password" />
-                </div>
-                <button >Log In</button>
-                <div className='error'>{this.state.error}</div>
-            </form>
+                    <div>
+                        <label htmlFor="password">Password</label>
+                        <input type="password" name="password" value="password" />
+                    </div>
+                    <button >Log In</button>
+                    <div className='error'>{this.state.error}</div>
+                </form>
+            </div>
         )
     }
 }

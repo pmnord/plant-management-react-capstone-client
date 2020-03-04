@@ -14,9 +14,7 @@ export default function Header(props) {
 
     function renderLogoutButton() {
         return (
-            <Link to='/'>
-                <button>Log Out</button>
-            </Link>
+                <button onClick={TokenService.clearToken}>Log Out</button>
         )
     }
 
