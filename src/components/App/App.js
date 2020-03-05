@@ -7,6 +7,7 @@ import LoginForm from '../LoginForm/LoginForm'
 import Garden from '../Garden/Garden'
 import PlantSearch from '../PlantSearch/PlantSearch'
 import PlantDetails from '../PlantDetails/PlantDetails'
+import moment from 'moment'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -20,7 +21,8 @@ export default class App extends React.Component {
           genus: "Monstera",
           duration: "Perennial",
           image: "https://upload.wikimedia.org/wikipedia/commons/0/04/Monstera_deliciosa3.jpg",
-          note: ''
+          note: '',
+          last_watered: '',
         },
         {
           id: "157554",
@@ -29,7 +31,8 @@ export default class App extends React.Component {
           genus: "Monstera",
           duration: "Perennial",
           image: "https://upload.wikimedia.org/wikipedia/commons/0/04/Monstera_deliciosa3.jpg",
-          note: ''
+          note: '',
+          last_watered: '',
         },
         {
           id: "157554",
@@ -38,7 +41,8 @@ export default class App extends React.Component {
           genus: "Monstera",
           duration: "Perennial",
           image: "https://upload.wikimedia.org/wikipedia/commons/0/04/Monstera_deliciosa3.jpg",
-          note: ''
+          note: '',
+          last_watered: '',
         },
 
       ]
@@ -49,6 +53,13 @@ export default class App extends React.Component {
     const newValue = e.target.value
     const newState = { plants: [...this.state.plants] }
     newState.plants[idx].note = newValue
+
+    this.setState(newState)
+  }
+
+  updateWatered = (idx) => {
+    const newState = { plants: [...this.state.plants] }
+    newState.plants[idx].last_watered = moment().format('MMMM Do h:mm a')
 
     this.setState(newState)
   }
@@ -64,14 +75,14 @@ export default class App extends React.Component {
     return (
       <div className="app">
         <Header />
-        {/* <h2 style={{ backgroundColor: 'yellow', textAlign: 'center' }}>This is just a demo. Please take a moment to <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScdox25FniERn2kj8FeQ7NKcxT4rrgI6f0TF0snnW07Y9g_vw/viewform?usp=sf_link">leave feedback on this form.</a> Thanks!</h2> */}
+        <h2 className="demo-banner" style={{ backgroundColor: 'yellow', textAlign: 'center' }}>This is just a demo. Please take a moment to <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScdox25FniERn2kj8FeQ7NKcxT4rrgI6f0TF0snnW07Y9g_vw/viewform?usp=sf_link">leave feedback on this form.</a> Thanks!</h2>
         <main className="main">
 
           <Switch>
             <Route
               exact
               path={'/'}
-              component={LoginForm}
+              render={() => <Garden plants={this.state.plants} updateNote={this.updateNote} />}
             />
             <Route
               exact
@@ -80,7 +91,7 @@ export default class App extends React.Component {
             />
             <Route
               path={'/garden/:username'}
-              render={() => <Garden plants={this.state.plants} updateNote={this.updateNote} />}
+              render={() => <Garden plants={this.state.plants} updateNote={this.updateNote} updateWatered={this.updateWatered} />}
             />
             <Route
               exact

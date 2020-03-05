@@ -49,7 +49,15 @@ code {
   justify-content: center;
   /* align-items: center; */
   width: 80%;
-  margin: 0 auto;
+  margin: 1em auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.clickable:hover {
+  cursor: pointer;
 }
 
 .error {
@@ -153,3 +161,25 @@ iframe {
 .plant-details img {
   height: 20em;
 }
+
+.plant-search {
+  width: 60%;
+}
+
+.plant-search__search-input {
+  width: 80%;
+}
+
+.plant-details {
+  width: 60%;
+}
+
+.plant-details div {
+  margin: 1em auto;
+  text-align: center;
+}
+
+.demo-banner {
+  margin: 0;
+}
+

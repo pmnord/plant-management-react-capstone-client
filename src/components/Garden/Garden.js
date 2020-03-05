@@ -48,11 +48,11 @@ export default class Garden extends React.Component {
             <div className='garden'>
                 <section className="garden-hud">
                     <Link to="/plant-search">
-                        <button>Search for Plants</button>
+                        <button>Get More Plants</button>
                     </Link>
                 </section>
                 <section className="plant-grid">
-                    {this.props.plants.map((plant, idx) => <PlantCard key={idx} plant={plant} updateNote={this.props.updateNote} idx={idx} />)}
+                    {this.props.plants.map((plant, idx) => <PlantCard key={idx} plant={plant} updateNote={this.props.updateNote} updateWatered={this.props.updateWatered} idx={idx} />)}
                 </section>
             </div>
         )
