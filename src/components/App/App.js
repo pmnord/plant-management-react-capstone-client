@@ -9,6 +9,9 @@ import PlantSearch from '../PlantSearch/PlantSearch'
 import PlantDetails from '../PlantDetails/PlantDetails'
 import moment from 'moment'
 
+import PrivateRoute from '../../routes/PrivateRoute'
+import PublicOnlyRoute from '../../routes/PublicOnlyRoute'
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -79,29 +82,36 @@ export default class App extends React.Component {
         <main className="main">
 
           <Switch>
-            <Route
-              exact
-              path={'/'}
-              render={() => <Garden plants={this.state.plants} updateNote={this.updateNote} />}
-            />
-            <Route
-              exact
-              path={'/login'}
-              component={LoginForm}
-            />
-            <Route
-              path={'/garden/:username'}
-              render={() => <Garden plants={this.state.plants} updateNote={this.updateNote} updateWatered={this.updateWatered} />}
-            />
-            <Route
-              exact
-              path={'/plant-search'}
-              component={PlantSearch}
-            />
-            <Route
-              path={'/plant/:plant_id'}
-              render={(r) => <PlantDetails addPlant={this.addPlant} router={r} />}
-            />
+
+            <PublicOnlyRoute>
+              <Route
+                exact
+                path={'/'}
+                render={() => <Garden />}
+              />
+              <Route
+                exact
+                path={'/login'}
+                component={LoginForm}
+              />
+            </PublicOnlyRoute>
+
+            <PrivateRoute>
+              <Route
+                path={'/garden/:username'}
+                render={() => <Garden plants={this.state.plants} updateNote={this.updateNote} updateWatered={this.updateWatered} />}
+              />
+              <Route
+                exact
+                path={'/plant-search'}
+                component={PlantSearch}
+              />
+              <Route
+                path={'/plant/:plant_id'}
+                render={(r) => <PlantDetails addPlant={this.addPlant} router={r} />}
+              />
+            </PrivateRoute>
+
           </Switch>
 
         </main >

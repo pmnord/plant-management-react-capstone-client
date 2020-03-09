@@ -44,7 +44,7 @@ export default class LoginForm extends React.Component {
     render() {
         return (
             <div>
-                <form className="login" onSubmit={() => { this.props.history.push(`/garden/dunder`) }}>
+                <form className="login" onSubmit={() => { TokenService.setToken('foobar') }}>
                     <div>
                         <label htmlFor="username">Username</label>
                         <input type="text" name="username" value="dunder" />
