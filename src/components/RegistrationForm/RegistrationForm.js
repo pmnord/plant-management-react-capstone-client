@@ -6,9 +6,9 @@ export default class RegistrationForm extends React.Component {
         super(props)
 
         this.state = {
-            username: 'dunder',
-            email: 'dunder@mifflin',
-            password: 'password',
+            username: '',
+            email: '',
+            password: '',
             error: null,
         }
     }

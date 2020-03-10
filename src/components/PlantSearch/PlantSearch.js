@@ -45,11 +45,14 @@ export default class PlantSearch extends React.Component {
                 <ul className="plant-search__search-results">
                     {this.state.searchResults.map((result, idx) => {
                         return (
+                            // Let's make this its own component called PlantSearchListItem
                             <Link to={`/plant/${result.id}`} key={idx}>
                                 <li className="plant-search__list-item">
                                     <h3><strong>{result.scientific_name}</strong></h3>
                                     <p>Common Name: {result.common_name || ''}</p>
                                     <p>Complete Data: {String(result.complete_data)}</p>
+                                    <button>Add Plant</button>
+                                    <button>See Details</button>
                                 </li>
                             </Link>
                         )

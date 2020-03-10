@@ -44,15 +44,15 @@ export default class LoginForm extends React.Component {
     render() {
         return (
             <div>
-                <form className="login" onSubmit={() => { TokenService.setToken('foobar') }}>
+                <form className="login" onSubmit={this.handleLoginSubmit}>
                     <div>
                         <label htmlFor="username">Username</label>
-                        <input type="text" name="username" value="dunder" />
+                        <input type="text" name="username" />
                     </div>
 
                     <div>
                         <label htmlFor="password">Password</label>
-                        <input type="password" name="password" value="password" />
+                        <input type="password" name="password" />
                     </div>
                     <button >Log In</button>
                     <div className='error'>{this.state.error}</div>
