@@ -26,8 +26,6 @@ export default class App extends React.Component {
         <main className="main">
 
           <Switch>
-
-
             <Route
               exact
               path={'/'}
@@ -38,9 +36,8 @@ export default class App extends React.Component {
               path={'/login'}
               component={LoginForm}
             />
-
             <Route
-              path={'/garden/:userid'}
+              path={'/garden'}
               render={() => <Garden
                 updateNote={this.updateNote}
                 updateWatered={this.updateWatered} />
@@ -55,8 +52,6 @@ export default class App extends React.Component {
               path={'/plant/:plant_id'}
               render={(r) => <PlantDetails addPlant={this.addPlant} router={r} />}
             />
-
-
           </Switch>
 
         </main >

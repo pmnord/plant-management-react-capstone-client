@@ -158,12 +158,9 @@ iframe {
   color: black;
 }
 
-.plant-details img {
-  height: 20em;
-}
 
 .plant-search {
-  width: 60%;
+  width: 100%;
 }
 
 .plant-search__search-input {
@@ -171,12 +168,31 @@ iframe {
 }
 
 .plant-details {
-  width: 60%;
+  width: 80%;
 }
 
-.plant-details div {
-  margin: 1em auto;
-  text-align: center;
+.plant-details__innerdiv {
+  display: flex;
+  justify-content: center;
+}
+
+.plant-details__images {
+  display: flex;
+  flex-wrap: wrap;
+  width: 40%;
+  margin-right: 2em;
+  justify-content: flex-end;
+}
+
+.plant-details img {
+  height: 10em;
+  border: solid 1px black;
+  border-radius: 5px;
+  margin: 0.2em;
+}
+
+.plant-details__details {
+  text-align: left;
 }
 
 .demo-banner {
