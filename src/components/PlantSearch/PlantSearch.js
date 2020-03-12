@@ -23,8 +23,10 @@ export default class PlantSearch extends React.Component {
                 ? res.json().then(e => Promise.reject(e))
                 : res.json()
         )
-        .then(results => 
-            this.setState({ searchResults: results})
+        .then(results => {
+            const sortedResults = results.sort((a, b) => a.complete_data === b.complete_data ? 0 : a.complete_data ? -1 : 1)
+            this.setState({ searchResults: sortedResults })
+        }
         )
         .catch(res => {
             this.setState({ error: res.error })
@@ -60,6 +62,7 @@ export default class PlantSearch extends React.Component {
                                 scientific_name={result.scientific_name}
                                 common_name={result.common_name}
                                 complete_data={result.complete_data}
+                                push={path => this.props.history.push(path)}
                             />
                         )
                     })}

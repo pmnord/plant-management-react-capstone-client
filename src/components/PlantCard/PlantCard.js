@@ -1,16 +1,36 @@
 import React from 'react'
+import config from '../../config'
+import TokenService from '../../services/token-service'
 
-export default function Garden(props) {
+export default function PlantCard(props) {
+
+    function handleDelete(plant_id) {
+        return fetch(`${config.API_ENDPOINT}/garden/${plant_id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${TokenService.getToken()}`
+            }
+        })
+        .then(res => 
+            (!res.ok)
+                ? res.json().then(e => Promise.reject(e))
+                : props.deletePlant(plant_id)
+        )
+        .catch(err => console.log(err))
+    }
 
     return (
         <div className='plant-card'>
+
             <div className='plant-card__header'>
-                <h3>{props.plant.scientific_name}</h3>
-                <button>Delete</button>
+                <div className="flex">
+                    <h3>{props.plant.scientific_name}</h3>
+                    <button onClick={() => handleDelete(props.plant.instance_id)}>Delete</button>
+                </div>
                 <img src={props.plant.image} />
                 {props.plant.common_name ? <p>"{props.plant.common_name}"</p> : null}
-                {/* <p>"{props.plant.common_name}"</p> */}
             </div>
+
             <div className="flex">
                 <p>Watered: {props.plant.watered_date}</p>
                 <svg onClick={() => props.updateWatered(props.idx)} className="clickable" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -19,6 +39,7 @@ export default function Garden(props) {
             </div>
 
             <textarea placeholder="Leave notes here" value={props.plant.note} onChange={(e) => props.updateNote(e, props.idx)} />
+        
         </div>
     )
 
