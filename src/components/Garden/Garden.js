@@ -67,7 +67,8 @@ export default class Garden extends React.Component {
                             updateNote={this.updateNote}
                             updateWatered={this.updateWatered}
                             deletePlant={instanceId => this.deletePlant(instanceId)}
-                            idx={idx} />)}
+                            idx={idx}
+                            push={(path) => this.props.router.history.push(path)} />)}
                 </section>
             </div>
         )

@@ -38,9 +38,10 @@ export default class App extends React.Component {
             />
             <Route
               path={'/garden'}
-              render={() => <Garden
+              render={(r) => <Garden
                 updateNote={this.updateNote}
-                updateWatered={this.updateWatered} />
+                updateWatered={this.updateWatered}
+                router={r} />
               }
             />
             <Route

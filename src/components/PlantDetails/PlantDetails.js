@@ -27,8 +27,8 @@ export default class PlantDetails extends React.Component {
                 const details = {
                     scientific_name: data.scientific_name,
                     common_name: data.common_name,
-                    class: data.class.name,
-                    order: data.order.name,
+                    plant_class: data.class.name,
+                    plant_order: data.order.name,
                     family: data.family.name,
                     family_common_name: data.family_common_name,
                     genus: data.genus.name,
@@ -53,18 +53,43 @@ export default class PlantDetails extends React.Component {
     }
 
     handleAddPlant = () => {
+        const {
+            scientific_name,
+            common_name,
+            plant_class,
+            plant_order,
+            family,
+            family_common_name,
+            genus,
+            duration,
+            shade_tolerance,
+            drought_tolerance,
+            flower_color,
+        } = this.state.details
+
+        const plantToAdd = {
+            trefle_id: this.props.router.match.params.plant_id,
+            image: this.state.images[0].url,
+            scientific_name,
+            common_name,
+            plant_class,
+            plant_order,
+            family,
+            family_common_name,
+            genus,
+            duration,
+            shade_tolerance,
+            drought_tolerance,
+            flower_color,
+        }
+
         return fetch(`${config.API_ENDPOINT}/garden`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
                 'Authorization': `Bearer ${TokenService.getToken()}`
             },
-            body: JSON.stringify({
-                trefle_id: this.props.router.match.params.plant_id,
-                scientific_name: this.state.details.scientific_name,
-                common_name: this.state.details.common_name,
-                image: this.state.images[0].url
-            })
+            body: JSON.stringify(plantToAdd)
         })
             .then(res =>
                 (!res.ok)
