@@ -27,11 +27,25 @@ export default class Garden extends React.Component {
         this.setState(newState)
     }
 
+    updateDbNote = (e, instance_id) => {
+        const updateValues = {
+            note: e.target.value
+        }
+
+        ApiService.updatePlantInstance(instance_id, updateValues)
+    }
+
     updateWatered = (idx) => {
         const newState = { plants: [...this.state.plants] }
         newState.plants[idx].watered_date = moment().format('MMMM Do h:mm a')
+        const newWateredDate = newState.plants[idx].watered_date
+        const plantInstanceId = newState.plants[idx].instance_id
+        const updateValues = {
+            watered_date: newWateredDate
+        }
 
         this.setState(newState)
+        ApiService.updatePlantInstance(plantInstanceId, updateValues)
     }
 
     addPlant = (newPlant) => {
@@ -65,6 +79,7 @@ export default class Garden extends React.Component {
                             key={idx}
                             plant={plant}
                             updateNote={this.updateNote}
+                            updateDbNote={this.updateDbNote}
                             updateWatered={this.updateWatered}
                             deletePlant={instanceId => this.deletePlant(instanceId)}
                             idx={idx}
