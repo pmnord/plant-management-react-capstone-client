@@ -56,7 +56,6 @@ export default class Garden extends React.Component {
     }
 
     deletePlant = (instanceId) => {
-        console.log('you hit the parent function')
         const plants = this.state.plants.filter(plant => plant.instance_id != instanceId)
         this.setState({ plants })
     }

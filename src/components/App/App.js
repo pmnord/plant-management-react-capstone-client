@@ -7,57 +7,70 @@ import LoginForm from '../LoginForm/LoginForm'
 import Garden from '../Garden/Garden'
 import PlantSearch from '../PlantSearch/PlantSearch'
 import PlantDetails from '../PlantDetails/PlantDetails'
-import moment from 'moment'
-import ApiService from '../../services/api-service'
 
 import PrivateRoute from '../../routes/PrivateRoute'
 import PublicOnlyRoute from '../../routes/PublicOnlyRoute'
+import TokenService from '../../services/token-service';
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
+    this.state = {
+      loggedIn: TokenService.hasToken()
+    }
+  }
+
+  handleLogin = () => {
+    this.setState({ loggedIn: true })
+  }
+
+  handleLogout = () => {
+    this.setState({ loggedIn: false })
   }
 
   render() {
     return (
       <div className="app">
-        <Header />
+        <Header handleLogout={this.handleLogout} />
         {/* <h2 className="demo-banner" style={{ backgroundColor: 'yellow', textAlign: 'center' }}>This is just a demo. Please take a moment to <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScdox25FniERn2kj8FeQ7NKcxT4rrgI6f0TF0snnW07Y9g_vw/viewform?usp=sf_link">leave feedback on this form.</a> Thanks!</h2> */}
+        
         <main className="main">
-
           <Switch>
-            <Route
+            <PublicOnlyRoute
               exact
               path={'/'}
-              component={RegistrationForm}
+              component={() => <RegistrationForm handleLogin={this.handleLogin} />}
             />
-            <Route
+            <PublicOnlyRoute
               exact
               path={'/login'}
-              component={LoginForm}
+              component={() => <LoginForm handleLogin={this.handleLogin} />}
             />
-            <Route
+            <PrivateRoute
               path={'/garden'}
-              render={(r) => <Garden
+              component={(r) => <Garden
                 updateNote={this.updateNote}
                 updateWatered={this.updateWatered}
                 router={r} />
               }
             />
-            <Route
+            <PrivateRoute
               exact
               path={'/plant-search'}
               component={PlantSearch}
             />
-            <Route
+            <PrivateRoute
               path={'/plant/:plant_id'}
-              render={(r) => <PlantDetails addPlant={this.addPlant} router={r} />}
+              component={(r) => <PlantDetails 
+                  addPlant={this.addPlant} 
+                  router={r} />}
             />
           </Switch>
-
         </main >
         <Footer />
       </div>
-    );
+    )
   }
 }
+
+export default App

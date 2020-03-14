@@ -1,5 +1,6 @@
 import React from 'react'
 import config from '../../config'
+import TokenService from '../../services/token-service'
 
 export default class RegistrationForm extends React.Component {
     constructor(props) {
@@ -28,8 +29,6 @@ export default class RegistrationForm extends React.Component {
             password: password.value,
         };
 
-        // console.log(newUser)
-
         fetch(`${config.API_ENDPOINT}/user`, {
             method: 'POST',
             headers: {
@@ -44,6 +43,7 @@ export default class RegistrationForm extends React.Component {
                 return res.json()
             })
             .then(resJson => {
+
                 username.value = ''
                 email.value = ''
                 password.value = ''
@@ -57,7 +57,30 @@ export default class RegistrationForm extends React.Component {
     }
 
     onRegistrationSuccess(newUser) {
-        console.log(`Welcome, ${newUser.username}`)
+        const credentials = {
+            username: newUser.username,
+            password: newUser.password,
+        }
+
+        fetch(`${config.API_ENDPOINT}/auth/login`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(credentials),
+        })
+            .then(res => {
+                if (!res.ok) return res.json().then(err => Promise.reject(err))
+                return res.json()
+            })
+            .then(res => {
+                TokenService.setToken(res.authToken)
+                this.props.handleLogin()
+                this.props.history.push(`/garden`)
+            })
+            .catch(err => {
+                this.setState({ error: err.error })
+            })
     }
 
     render() {

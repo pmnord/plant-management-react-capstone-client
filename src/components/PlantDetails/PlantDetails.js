@@ -14,7 +14,6 @@ export default class PlantDetails extends React.Component {
     }
 
     componentDidMount = () => {
-        console.log(this.props.router, this.props.router.match.params.plant_id)
         const trefle_id = this.props.router.match.params.plant_id
 
         fetch(`${config.API_ENDPOINT}/plant/${trefle_id}`)
@@ -102,7 +101,7 @@ export default class PlantDetails extends React.Component {
     render() {
         return (
             <div className='plant-details'>
-                <button onClick={this.props.router.history.goBack}>Back to Search</button>
+                <button onClick={this.props.router.history.goBack}>Back</button>
                 <div className="plant-details__innerdiv">
                     <div className="plant-details__images">
                         {this.state.images.map(image => <img src={image.url} />)}

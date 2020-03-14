@@ -9,7 +9,7 @@ export default function PublicOnlyRoute({ component, ...props }) {
             {...props}
             render={componentProps => (
                 TokenService.hasToken()
-                    ? <Redirect to={'/garden/dunder'} />
+                    ? <Redirect to={'/garden'} />
                     : <Component {...componentProps} />
             )}
         />

@@ -2,39 +2,57 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import TokenService from '../../services/token-service'
 
-export default function Header(props) {
+export default class Header extends React.Component {
+    constructor(props) {
+        super(props)
+    }
 
-    function renderLoginButton() {
+    handleLogoutclick = () => {
+        TokenService.clearToken()
+        this.props.handleLogout()
+    }
+
+    renderLoginButton() {
         return (
-            <Link to='/login'>
-                <button>Log In</button>
-            </Link>
+            <div>
+                <Link
+                    to='/login'>
+                    <button
+                    >Log In
+                    </button>
+                </Link>
+            </div>
         )
     }
 
-    function renderLogoutButton() {
+    renderLogoutButton() {
         return (
             <div>
                 <Link to="/garden">
                     <button>My Garden</button>
                 </Link>
-                <button onClick={TokenService.clearToken}>Log Out</button>
+                <Link to="/">
+                    <button onClick={this.handleLogoutclick}>Log Out</button>
+                </Link>
             </div>
         )
     }
 
 
-    return (
-        <header className="header">
-            <Link to='/'>
-                <h1>Fancy Plants</h1>
-            </Link>
-            {
-                TokenService.hasToken()
-                    ? renderLogoutButton()
-                    : renderLoginButton()
-            }
-
-        </header>
-    )
+    render() {
+        return (
+            <header className="header">
+                <nav className="header__nav">
+                    <h1>
+                        <Link to='/'>
+                            Fancy Plants
+                        </Link>
+                    </h1>
+                    {TokenService.hasToken()
+                        ? this.renderLogoutButton()
+                        : this.renderLoginButton()}
+                </nav>
+            </header>
+        )
+    }
 }

@@ -32,9 +32,9 @@ export default class LoginForm extends React.Component {
                 return res.json()
             })
             .then(res => {
-                console.log(res)
                 TokenService.setToken(res.authToken)
-                this.props.history.push(`/garden/${credentials.username}`) // change this so it's coming from db
+                this.props.handleLogin()
+                this.props.history.push(`/garden`)
             })
             .catch(err => {
                 this.setState({ error: err.error })
