@@ -27,7 +27,7 @@ export default class RegistrationForm extends React.Component {
             username: username.value,
             email: email.value,
             password: password.value,
-        };
+        }
 
         fetch(`${config.API_ENDPOINT}/user`, {
             method: 'POST',

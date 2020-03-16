@@ -104,13 +104,13 @@ export default class PlantDetails extends React.Component {
                 <button onClick={this.props.router.history.goBack}>Back</button>
                 <div className="plant-details__innerdiv">
                     <div className="plant-details__images">
-                        {this.state.images.map(image => <img src={image.url} />)}
+                        {this.state.images.map(image => <img src={image.url} alt={`${this.state.details.scientific_name}`} />)}
                     </div>
                     <div className="plant-details__details">
                         {Object.entries(this.state.details).map(detail =>
                             <p><strong>{this.labelize(detail[0])}: </strong>{detail[1]}</p>
                         )}
-                        <a target="_blank" href={`https://en.wikipedia.org/wiki/${this.state.details.genus}`}><p>Wikipedia</p></a>
+                        <a rel="noopener noreferrer" target="_blank" href={`https://en.wikipedia.org/wiki/${this.state.details.genus}`}><p>Wikipedia</p></a>
                         <button onClick={this.handleAddPlant}>Add to My Garden</button>
                     </div>
                 </div>

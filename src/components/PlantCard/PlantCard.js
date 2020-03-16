@@ -31,7 +31,7 @@ export default function PlantCard(props) {
                     <h3>{props.plant.scientific_name}</h3>
                     <button onClick={() => handleDelete(props.plant.instance_id)}>Delete</button>
                 </div>
-                <img src={props.plant.image} />
+                <img src={props.plant.image} alt={`${props.plant.scientific_name}`} />
                 {props.plant.common_name ? <p>"{props.plant.common_name}"</p> : null}
                 <button onClick={() => props.push(`/plant/${props.plant.trefle_id}`)}>Details</button>
             </div>

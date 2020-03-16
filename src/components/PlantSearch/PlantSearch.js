@@ -46,12 +46,18 @@ export default class PlantSearch extends React.Component {
                     />
                     <button>Search</button>
                 </form>
+
                 <p className="error">
                     {this.state.error
                         ? this.state.error
                         : null
                     }
                 </p>
+
+                <div>
+                    <p>Data is being provided from the Trefle.io database and may not be complete with images and details for all plants.</p>
+                    <p>Contribute to the Trefle project by <a href="https://trefle.io/species_proposals/create" target="_blank" rel="noopener noreferrer">helping to fill out the database!</a></p>
+                </div>
 
                 <ul className="plant-search__search-results">
                     {this.state.searchResults.map((result, idx) => {

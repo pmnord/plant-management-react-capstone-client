@@ -24,6 +24,7 @@ export default class LoginForm extends React.Component {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
+                'api-key': config.API_KEY,
             },
             body: JSON.stringify(credentials),
         })
