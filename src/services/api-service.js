@@ -5,7 +5,8 @@ const ApiService = {
     getUserPlants() {
         return fetch(`${config.API_ENDPOINT}/garden/`, {
             headers: {
-                'Authorization': `Bearer ${TokenService.getToken()}`
+                'api-key': config.API_KEY,
+                'Authorization': `Bearer ${TokenService.getToken()}`,
             }
         })
         .then(res => {
@@ -19,7 +20,8 @@ const ApiService = {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
-                'Authorization': `Bearer ${TokenService.getToken()}`
+                'api-key': config.API_KEY,
+                'Authorization': `Bearer ${TokenService.getToken()}`,
             },
             body: JSON.stringify(updateValues)
         })
@@ -28,7 +30,7 @@ const ApiService = {
             return
         })
         .catch(res => console.log(res.error))
-    }
+    },
 }
 
 export default ApiService;

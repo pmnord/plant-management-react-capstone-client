@@ -15,7 +15,7 @@ body {
 
 .header a {
   text-decoration: none;
-  color: var(--black);
+  color: var(--black); 
   font-family: 'Sacramento';
 }
 
@@ -67,7 +67,6 @@ button:hover {
   min-height: 80vh;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   width: 80%;
   margin: 1em auto;
 }
@@ -87,18 +86,20 @@ button:hover {
   height: 1em;
 }
 
-.registration {
+.HomeRoute {
+  width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
-.registration__form {
+.HomeRoute__form {
   display: flex;
   flex-direction: column;
 }
 
-.registration__pitch {
-  width: 60%;
+.HomeRoute__pitch {
+  width: 50%;
+  margin: 2em;
 }
 
 .plant-grid {
@@ -155,9 +156,26 @@ iframe {
   height: 15em;
 }
 
+.garden {
+  width: 100%;
+}
+
 .garden-hud {
+}
+
+.garden-hud button {
+  margin-right: 1em;
+  display: block;
+}
+
+.garden-hud a {
+  text-decoration: none;
+}
+
+.garden-hud__filter {
   height: 2em;
-  padding: 1em;
+  border-radius: 5px;
+  margin-left: 0.5em;
 }
 
 .plant-search ul {
@@ -234,3 +252,23 @@ iframe {
   margin: 0;
 }
 
+@media screen 
+  and (min-device-width: 1200px)  { 
+    
+    .garden-hud {
+      height: 2em;
+      padding: 1em;
+    }
+    
+    .garden-hud button {
+      margin-right: 5em;
+      display: inline;
+    }
+    
+    .garden-hud__filter {
+      height: 2em;
+      width: 40em;
+      border-radius: 5px;
+      margin-left: 0.5em;
+    }
+}

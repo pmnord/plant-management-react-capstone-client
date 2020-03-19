@@ -14,11 +14,8 @@ export default class LoginForm extends React.Component {
         e.preventDefault()
         this.setState({ error: null })
 
-        const { username, password } = e.target
-        const credentials = {
-            username: username.value,
-            password: password.value,
-        }
+        const username = e.target.username.value
+        const password = e.target.password.value
 
         fetch(`${config.API_ENDPOINT}/auth/login`, {
             method: 'POST',
@@ -26,7 +23,7 @@ export default class LoginForm extends React.Component {
                 'content-type': 'application/json',
                 'api-key': config.API_KEY,
             },
-            body: JSON.stringify(credentials),
+            body: JSON.stringify({ username, password }),
         })
             .then(res => {
                 if (!res.ok) return res.json().then(err => Promise.reject(err))
@@ -34,8 +31,8 @@ export default class LoginForm extends React.Component {
             })
             .then(res => {
                 TokenService.setToken(res.authToken)
-                this.props.handleLogin()
-                this.props.history.push(`/garden`)
+                this.props.updateLoggedIn()
+                this.props.router.history.push(`/garden`)
             })
             .catch(err => {
                 this.setState({ error: err.error })
@@ -44,8 +41,8 @@ export default class LoginForm extends React.Component {
 
     render() {
         return (
-            <div>
                 <form className="login" onSubmit={this.handleLoginSubmit}>
+                    <h2>Log In</h2>
                     <div>
                         <label htmlFor="username">Username</label>
                         <input type="text" name="username" />
@@ -55,10 +52,9 @@ export default class LoginForm extends React.Component {
                         <label htmlFor="password">Password</label>
                         <input type="password" name="password" />
                     </div>
-                    <button >Log In</button>
+                    <button >Submit</button>
                     <div className='error'>{this.state.error}</div>
                 </form>
-            </div>
         )
     }
 }

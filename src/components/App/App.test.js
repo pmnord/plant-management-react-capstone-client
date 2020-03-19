@@ -1,11 +1,17 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 
-it('renders the app component', () => {
+import App from './App'
+
+it('renders the App component', () => {
   const div = document.createElement('div')
 
-  ReactDOM.render(<App />, div)
+  ReactDOM.render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+    , div)
+
   ReactDOM.unmountComponentAtNode(div)
 });

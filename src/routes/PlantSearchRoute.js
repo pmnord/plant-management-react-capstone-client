@@ -1,8 +1,8 @@
 import React from 'react'
-import PlantSearchListItem from '../PlantSearchListItem/PlantSearchListItem'
-import config from '../../config'
+import PlantSearchListItem from '../components/PlantSearchListItem/PlantSearchListItem'
+import config from '../config'
 
-export default class PlantSearch extends React.Component {
+export default class PlantSearchRoute extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

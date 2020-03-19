@@ -10,6 +10,7 @@ export default function PlantSearchListItem(props) {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
+                'api-key': config.API_KEY,
                 'Authorization': `Bearer ${TokenService.getToken()}`
             },
             body: JSON.stringify({

@@ -8,9 +8,9 @@ Take a break from social media, work, and the news for a while and just focus on
 
 | | | | | |
 |-|-|-|-|-|
-|**Front-End**|React|ES6|CSS3||
+|**Front-End**|React|ES10|CSS3||
 |**Back-End**|Node.js|Express|PostgreSQL|RESTful API|
-|**Development**|Jest|Mocha|Chai|Heroku|
+|**Development**|Jest|Mocha|Chai|Heroku|Zeit|
 | | | | | |
 
 
@@ -86,6 +86,5 @@ Take a break from social media, work, and the news for a while and just focus on
 
 ## Developer Roadmap
 
-1. Users can add comments to their plants
-2. Users can search for other users' gardens via GET /garden
-3. Users can leave comments on other users' gardens
+1. Users can search for other users' gardens via GET /garden/:username
+1. Users can leave comments on other users' gardens

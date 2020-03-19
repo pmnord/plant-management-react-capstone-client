@@ -1,7 +1,7 @@
 import React from 'react'
-import PlantCard from '../PlantCard/PlantCard'
+import PlantCard from '../components/PlantCard/PlantCard'
 import { Link } from 'react-router-dom'
-import ApiService from '../../services/api-service'
+import ApiService from '../services/api-service'
 import moment from 'moment'
 
 export default class Garden extends React.Component {
@@ -9,13 +9,14 @@ export default class Garden extends React.Component {
         super(props);
         this.state = {
             error: null,
-            plants: []
+            plants: [],
+            plantsCache: []
         }
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         ApiService.getUserPlants()
-            .then(plants => this.setState({ plants }))
+            .then(plants => this.setState({ plants: plants, plantsCache: plants }))
             .catch(err => this.setState({ error: err }))
     }
 
@@ -60,16 +61,30 @@ export default class Garden extends React.Component {
         this.setState({ plants })
     }
 
+    filterPlants = (e) => {
+        const query = e.target.value.toLowerCase()
+
+        const filteredPlants = this.state.plantsCache.filter(plant =>
+            plant.scientific_name.toLowerCase().includes(query)
+                ? true
+                : plant.common_name
+                    ? plant.common_name.toLowerCase().includes(query)
+                    : false
+        )
+        this.setState({ plants: filteredPlants })
+    }
+
     render() {
         const { plants = [] } = this.state;
 
         return (
-
             <div className='garden'>
                 <section className="garden-hud">
                     <Link to="/plant-search">
                         <button>Get More Plants</button>
                     </Link>
+                    <label htmlFor="garden-filter"><strong>Filter Plants:</strong></label>
+                    <input name="garden-filter" className="garden-hud__filter" type="text" onChange={this.filterPlants} />
                 </section>
                 
                 <section className="plant-grid">

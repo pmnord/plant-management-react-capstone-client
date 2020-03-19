@@ -8,6 +8,7 @@ export default function PlantCard(props) {
         return fetch(`${config.API_ENDPOINT}/garden/${plant_id}`, {
             method: 'DELETE',
             headers: {
+                'api-key': config.API_KEY,
                 'Authorization': `Bearer ${TokenService.getToken()}`
             }
         })
