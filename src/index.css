@@ -80,7 +80,7 @@ button:hover {
 
 .error {
   color: red;
-  height: 1em;
+  height: 1.5em;
 }
 
 .HomeRoute {
@@ -211,6 +211,8 @@ iframe {
 }
 
 .garden-hud {
+  display: flex;
+  align-items: center;
 }
 
 .garden-hud button {
@@ -222,10 +224,13 @@ iframe {
   text-decoration: none;
 }
 
+.garden-hud label {
+  margin: 0.5em;
+}
+
 .garden-hud__filter {
   height: 2em;
   border-radius: 5px;
-  margin-left: 0.5em;
 }
 
 .plant-search ul {
@@ -313,8 +318,20 @@ iframe {
   margin: 0;
 }
 
+@media screen and (max-width: 1120px) {
+  .garden-hud__filter {
+    width: 20em;
+  }
+}
+
+@media screen and (min-width: 1121px) {
+  .garden-hud__filter {
+    width: 40em;
+  }
+}
+
 @media screen 
-  and (min-device-width: 500px)  { 
+  and (min-device-width: 813px)  { 
 
     .main {
       min-height: 80vh;
@@ -336,7 +353,6 @@ iframe {
     
     .garden-hud__filter {
       height: 2em;
-      width: 40em;
       border-radius: 5px;
       margin-left: 0.5em;
     }
@@ -376,5 +392,13 @@ iframe {
       width: 40%;
       margin-right: 2em;
       justify-content: flex-end;
+    }
+
+    .plant-details img {
+      height: 14em;
+      max-width: none;
+      border: solid 1px var(--black);
+      border-radius: 5px;
+      margin: 0.2em;
     }
 }
