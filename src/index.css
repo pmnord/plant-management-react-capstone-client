@@ -13,17 +13,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.header a {
-  text-decoration: none;
-  color: var(--black); 
-  font-family: 'Sacramento';
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 button {
   margin: 0.5em;
   padding: 0.5em 1em;
@@ -38,6 +27,12 @@ button {
 }
 button:hover {
   cursor: pointer;
+}
+
+.header a {
+  text-decoration: none;
+  color: var(--black); 
+  font-family: 'Sacramento';
 }
 
 .header__nav {
@@ -58,6 +53,7 @@ button:hover {
   margin: 0.5em;
 }
 
+
 .app {
   display: flex;
   flex-direction: column;
@@ -67,8 +63,9 @@ button:hover {
   min-height: 80vh;
   display: flex;
   justify-content: center;
-  width: 80%;
-  margin: 1em auto;
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1000px;
 }
 
 .flex {
@@ -89,7 +86,13 @@ button:hover {
 .HomeRoute {
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  margin-top: 0.6em;
+  background-image: url('./resources//kendal-TW2bfT_tWDI-unsplash.jpg');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 5px;
 }
 
 .HomeRoute__form {
@@ -98,8 +101,55 @@ button:hover {
 }
 
 .HomeRoute__pitch {
-  width: 50%;
-  margin: 2em;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  background-color: hsla(0, 0%, 95%, 0.9);
+}
+
+.HomeRoute__pitch p {
+  margin: 0.5em;
+  font-size: 1em;
+  
+}
+
+.HomeRoute__authentication .login {
+  display: none;
+}
+
+.registration__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0.5em;
+  margin-bottom: 1em;
+  
+  background-color: hsla(0, 0%, 95%, 0.92);
+  box-shadow: 2px 2px 2px var(--black);
+  border: solid 0.5px var(--black);
+}
+
+.registration__form label,
+.login label {
+  display: block;
+  color: #444;
+}
+
+.login {
+  padding: 0 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 15em;
+  
+  background-color: hsla(0, 0%, 95%, 0.92);
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px var(--black);
+  border: solid 0.5px var(--black);
+}
+
+.LoginRoute {
+  margin-top: 2em;
 }
 
 .plant-grid {
@@ -111,12 +161,12 @@ button:hover {
 .plant-card {
   background-color: #eee;
   width: 16em;
-  height: 22em;
+  /* height: 22em; */
   padding: 1em;
   margin: 1em;
   padding-top: 0.1em;
   
-  border-radius: 1em;
+  border-radius: 12px;
   box-shadow: 5px 5px 5px var(--black);
   border: solid 0.5px var(--black);
 }
@@ -193,18 +243,29 @@ iframe {
   justify-content: space-between;
   align-items: center;
 
-  background-color: #ddd;
+  background-color: #eee;
   margin: 1em 0;
   padding: 0.5em 1em;
   width: 100%;
-
-  border-radius: 1em;
-  box-shadow: 5px 5px 5px var(--black);
-  border: solid 0.5px var(--black);
+  box-sizing: border-box;
 
   color: var(--black);
 }
 
+.plant-search__list-item:nth-child(2n) {
+  background-color: #ddd;
+}
+
+.plant-search__list-item__buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.plant-search__plant-names p {
+  margin: 0;
+}
 
 .plant-search {
   width: 100%;
@@ -221,24 +282,24 @@ iframe {
 }
 
 .plant-details {
-  width: 80%;
+  width: 100%;
 }
 
 .plant-details__innerdiv {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .plant-details__images {
-  display: flex;
-  flex-wrap: wrap;
-  width: 40%;
-  margin-right: 2em;
-  justify-content: flex-end;
+  margin-right: 0.5em;
+  text-align: right;
+  width: 50%;
 }
 
 .plant-details img {
-  height: 10em;
+  height: 7em;
+  max-width: 157px;
   border: solid 1px var(--black);
   border-radius: 5px;
   margin: 0.2em;
@@ -253,10 +314,18 @@ iframe {
 }
 
 @media screen 
-  and (min-device-width: 1200px)  { 
+  and (min-device-width: 500px)  { 
+
+    .main {
+      min-height: 80vh;
+      display: flex;
+      justify-content: center;
+      width: 80%;
+      margin: 1em auto;
+      max-width: 1000px;
+    }
     
     .garden-hud {
-      height: 2em;
       padding: 1em;
     }
     
@@ -270,5 +339,42 @@ iframe {
       width: 40em;
       border-radius: 5px;
       margin-left: 0.5em;
+    }
+
+    .HomeRoute__authentication {
+      width: 18em;
+    }
+
+    .HomeRoute__authentication .login {
+      display: flex;
+    }
+
+    .HomeRoute {
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2em;
+    }
+
+    .HomeRoute__pitch {
+      width: 50%;
+      margin-right: 2em;
+      background-color: hsla(0, 0%, 95%, 0.92);
+      box-shadow: 2px 2px 2px var(--black);
+      border: solid 0.5px var(--black);
+      border-radius: 3px;
+
+    }
+
+    .registration__form {
+      border-radius: 3px;
+    }
+
+    .plant-details__images {
+      display: flex;
+      flex-wrap: wrap;
+      width: 40%;
+      margin-right: 2em;
+      justify-content: flex-end;
     }
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import config from '../../config'
 import TokenService from '../../services/token-service'
+import moment from 'moment'
 
 export default function PlantCard(props) {
 
@@ -33,7 +34,7 @@ export default function PlantCard(props) {
                     <button onClick={() => handleDelete(props.plant.instance_id)}>Delete</button>
                 </div>
                 <img src={props.plant.image} alt={`${props.plant.scientific_name}`} />
-                {props.plant.common_name ? <p>"{props.plant.common_name}"</p> : null}
+                {props.plant.common_name ? <p>"{props.plant.common_name}"</p> : <p></p>}
                 <button onClick={() => props.push(`/plant/${props.plant.trefle_id}`)}>Details</button>
             </div>
 

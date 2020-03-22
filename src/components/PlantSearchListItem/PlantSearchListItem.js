@@ -27,16 +27,25 @@ export default function PlantSearchListItem(props) {
         .catch(res => console.log(res.error))
     }
 
+    function capitalize(str) {
+        return str
+            .split(' ')
+            .map(word => word[0].toUpperCase() + word.slice(1))
+            .join(' ')
+    }
+
     return (
         <li className="plant-search__list-item">
-            <h3><strong>{props.scientific_name}</strong></h3>
-            {props.common_name
-                ? <p>"{props.common_name || ''}"</p>
-                : null
-            }
-            <div>
+            <div className="plant-search__plant-names">
+                <h3><strong>{props.scientific_name}</strong></h3>
+                {props.common_name
+                    ? <p>"{capitalize(props.common_name)}"</p>
+                    : <p></p>
+                }
+            </div>
+            <div className="plant-search__list-item__buttons">
                 {props.complete_data
-                    ? <Link to={`/plant/${props.trefle_id}`}><button>Plant Details</button></Link>
+                    ? <Link to={`/plant/${props.trefle_id}`}><button>Details</button></Link>
                     : null
                 }
                 <button onClick={handleAddPlant}>Add Plant</button>

@@ -7,9 +7,9 @@ export default function HomeRoute(props) {
         <div className="HomeRoute">
             <div className="HomeRoute__pitch">
                 <p><strong><u>To demo the app use the following credentials</u></strong></p>
-                <p><strong>Username: demo</strong></p>
-                <p><strong>Password: password</strong></p>
+                <p><strong>Username: demo | Password: password</strong></p>
                 <p>Fancy Plants allows you to create a virtual garden for all of your plants, get in-depth information on plant care, and share your personal garden with other house plant enthusiasts.
+                        <br />
                         <br />
                         Take a break from social media, work, and the news for a while and just focus on the things you love - plants!</p>
             </div>
