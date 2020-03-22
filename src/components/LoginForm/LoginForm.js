@@ -12,6 +12,7 @@ export default class LoginForm extends React.Component {
 
     handleLoginSubmit = e => {
         e.preventDefault()
+        
         this.setState({ error: null })
 
         const username = e.target.username.value
