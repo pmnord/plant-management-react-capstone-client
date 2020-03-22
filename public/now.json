@@ -1,9 +1,3 @@
 {
-    "name": "fancy-plants",
-    "build": {
-        "env": {
-            "REACT_APP_FANCYPLANTS_SERVER": "@react_app_fancyplants_server",
-            "REACT_APP_FANCYPLANTS_API_KEY": "@react_app_fancyplants_api_key"
-        }
-    }
+    "name": "fancy-plants"
 }
