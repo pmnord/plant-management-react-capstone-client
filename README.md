@@ -2,6 +2,8 @@
 
 Fancy Plants is a plant management application for tracking a collection of plants, with access to one of the largest open plant databases on the web. Users can do research on plant species, add them to their collection, and use the features of the Garden dashboard to manage their plants.
 
+[Demo](https://fancy-plants.pmnord.now.sh/)
+
 [API Documentation](https://github.com/pmnord/plant-management-react-capstone-server)
 
 ## Technologies
