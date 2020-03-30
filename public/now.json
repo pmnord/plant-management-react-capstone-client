@@ -1,3 +1,13 @@
 {
-    "name": "fancy-plants"
+    "version": 2,
+    "name": "fancy-plants",
+    "routes": [
+        {
+            "handle": "filesystem"
+        },
+        {
+            "src": "/.*",
+            "dest": "/index.html"
+        }
+    ]
 }

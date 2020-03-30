@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import TokenService from '../../services/token-service'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import TokenService from '../../services/token-service';
 
 export default class Header extends React.Component {
 
@@ -25,6 +25,9 @@ export default class Header extends React.Component {
     renderLogoutButton() {
         return (
             <div>
+                <Link to="/plant" className="mobile-hidden">
+                    <button >Search All Plants</button>
+                </Link>
                 <Link to="/garden">
                     <button>My Garden</button>
                 </Link>
@@ -35,16 +38,17 @@ export default class Header extends React.Component {
         )
     }
 
-
     render() {
         return (
             <header className="header">
                 <nav className="header__nav">
                     <h1>
+                        {/* Redirects based on Public or Protected route */}
                         <Link to='/'>
                             Fancy Plants
                         </Link>
                     </h1>
+                    {/* Conditionally render Login or Logout */}
                     {TokenService.hasToken()
                         ? this.renderLogoutButton()
                         : this.renderLoginButton()}

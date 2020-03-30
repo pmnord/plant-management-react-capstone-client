@@ -1,8 +1,8 @@
 # Fancy Plants
 
-Fancy Plants allows you to create a virtual garden for all of your plants, get in-depth information on plant care, and share your personal garden with other house plant enthusiasts.
+Fancy Plants is a plant management application for tracking a collection of plants, with access to one of the largest open plant databases on the web. Users can do research on plant species, add them to their collection, and use the features of the Garden dashboard to manage their plants.
 
-Take a break from social media, work, and the news for a while and just focus on the things you love - plants!
+[API Documentation](https://github.com/pmnord/plant-management-react-capstone-server)
 
 ## Technologies
 
@@ -14,37 +14,31 @@ Take a break from social media, work, and the news for a while and just focus on
 | | | | | |
 
 
-## UX, User Stories & Routes
+## Views & Routes
 
-### Landing Page - GET /
+### Landing Page - /
 
-- As a user, I want log in so I can access my garden
-- As a new user, I want to sign up so I can create a garden
+FancyPlants requires account registration to log in.
 
-![Landing Page](./resources/wireframes/register.png)
+![Landing Page](./resources/screenshots/register.png)
 
-### User Garden - GET /garden/:user_id
+### User Garden - /garden
 
-- As a user, I want to see my garden so I can learn about the plants in it
-- As a user, I want to see garden details so I can understand it as a whole object
-- As a user, I want to add new plants to my garden so I can track plants I own or better visualize plants I might own
+Manage the plants in your collection from the garden dashboard.
 
-![User Garden](./resources/wireframes/user-garden.png)
+![User Garden](./resources/screenshots/garden.png)
 
-### Plants Search Page - GET /plant
+### Plants Search Page - /plant
 
-- As a user, I want to search the available plants in the database so I can add them to my garden
-- As a user, I want to filter my search results so I can more easily find the plant I want
+Search one of the largest open plant databases on the web, Trefle.io, to learn about plants and add them to your collection.
 
-![Plant Search Page](./resources/wireframes/plant-search.png)
+![Plant Search Page](./resources/screenshots/plant-search.png)
 
-### Plant Page - GET /plant/:plant_id
+### Plant Page - /plant/:plant_id
 
-- As a user, I want to learn about a plant so I can decide whether to add it to my garden
-- As a user, I want to add a plant to my garden so I can track the plants I own
-- As a user, I want to see similar plants so I can discover new plants I might like to own
+View images and details related to a plant on its details page.
 
-![Plant Page](./resources/wireframes/plant-page.png)
+![Plant Page](./resources/screenshots/plant-details.png)
 
 ## Site Map / User Flow
 
@@ -54,37 +48,9 @@ Take a break from social media, work, and the news for a while and just focus on
             - Plant Page 
                 - Add Plant
 
-## Database Architecture
-
-## Business Objects
-<!-- The basic objects required for the application -->
-- Users
-    - ID
-    - Username
-    - Password
-    - Garden
-
-- User_Garden
-    - Plant_ID
-
-- Plants
-    - ID
-    - Name
-    - Scientific Name
-    - Order
-    - Native Status
-    - Propagation
-    - Soil
-    - Duration
-    - Growth
-        - Temperature Minimum
-        - Shade Tolerance
-        - Resprout Ability
-        - Drought Tolerance
-        - Root Depth Minimum
-    - ImageURL
-
 ## Developer Roadmap
 
 1. Users can search for other users' gardens via GET /garden/:username
 1. Users can leave comments on other users' gardens
+1. Users can track the watering history of their plants
+1. Many new features to the garden dashboard

@@ -27,6 +27,16 @@ button {
 }
 button:hover {
   cursor: pointer;
+  color: white;
+  background-color: #333;
+}
+
+.hidden {
+  display: none;
+}
+
+.mobile-hidden {
+  display: none;
 }
 
 .header a {
@@ -52,7 +62,6 @@ button:hover {
 .footer p {
   margin: 0.5em;
 }
-
 
 .app {
   display: flex;
@@ -182,6 +191,23 @@ button:hover {
 
 .plant-card__watered {
   display: flex;
+  align-items: center;
+}
+
+.plant-card__water-button {
+  margin: 0.2em !important;
+  padding: 0em !important;
+  height: 1.7em;
+  width: 1.7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.plant-card__water-button:hover {
+  background-color: white;
+}
+.plant-card__water-button:focus {
+  outline: none;
 }
 
 .plant-card textarea {
@@ -231,6 +257,10 @@ iframe {
 .garden-hud__filter {
   height: 2em;
   border-radius: 5px;
+}
+
+.plant-search__disclaimer {
+  text-align: center;
 }
 
 .plant-search ul {
@@ -310,8 +340,24 @@ iframe {
   margin: 0.2em;
 }
 
+.plant-details h2 {
+  font-size: 0.8em;
+  width: fit-content;
+  margin: 0 auto;
+  margin-bottom: 0.5em;
+  padding: 0.2em;
+  border-radius: 2px;
+  text-align: center;
+  background-color: hsl(73, 60%, 88%);
+}
+
 .plant-details__details {
   text-align: left;
+}
+
+.plant-details__raw-data-button {
+  padding: 0.2em;
+  font-size: 0.8em;
 }
 
 .demo-banner {
@@ -327,6 +373,10 @@ iframe {
 @media screen and (min-width: 1121px) {
   .garden-hud__filter {
     width: 40em;
+  }
+
+  .mobile-hidden {
+    display: inline;
   }
 }
 

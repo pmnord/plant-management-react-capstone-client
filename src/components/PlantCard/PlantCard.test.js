@@ -1,11 +1,11 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-import PlantCard from './PlantCard'
+import PlantCard from './PlantCard';
 
 it('Renders the PlantCard component', () => {
-    const div = document.createElement('div')
+    const div = document.createElement('div');
 
     ReactDOM.render(<BrowserRouter>
         <PlantCard

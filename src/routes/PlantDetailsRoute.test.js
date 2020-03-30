@@ -1,11 +1,11 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { BrowserRouter, Router } from 'react-router-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Router } from 'react-router-dom';
 
-import PlantDetailsRoute from './PlantDetailsRoute'
+import PlantDetailsRoute from './PlantDetailsRoute';
 
 it('Renders the PlantDetailsRoute component', () => {
-    const div = document.createElement('div')
+    const div = document.createElement('div');
 
     ReactDOM.render(
         <BrowserRouter>
@@ -17,7 +17,7 @@ it('Renders the PlantDetailsRoute component', () => {
                     }
                     }} />
         </BrowserRouter>
-        , div)
+        , div);
 
-    ReactDOM.unmountComponentAtNode(div)
-})
+    ReactDOM.unmountComponentAtNode(div);
+});

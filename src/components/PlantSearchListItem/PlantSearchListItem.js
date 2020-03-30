@@ -1,8 +1,9 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import config from '../../config'
-import TokenService from '../../services/token-service'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import config from '../../config';
+import TokenService from '../../services/token-service';
 
+// List Item representing a search result when a user searches for plants in the Trefle database
 export default function PlantSearchListItem(props) {
 
     function handleAddPlant() {
@@ -24,14 +25,14 @@ export default function PlantSearchListItem(props) {
                 ? res.json().then(e => Promise.reject(e))
                 : props.push('/garden')
         )
-        .catch(res => console.log(res.error))
+        .catch(res => console.log(res.error));
     }
 
     function capitalize(str) {
         return str
             .split(' ')
             .map(word => word[0].toUpperCase() + word.slice(1))
-            .join(' ')
+            .join(' ');
     }
 
     return (
@@ -39,16 +40,16 @@ export default function PlantSearchListItem(props) {
             <div className="plant-search__plant-names">
                 <h3><strong>{props.scientific_name}</strong></h3>
                 {props.common_name
-                    ? <p>"{capitalize(props.common_name)}"</p>
+                    ? <p>'{capitalize(props.common_name)}'</p>
                     : <p></p>
                 }
             </div>
             <div className="plant-search__list-item__buttons">
                 {props.complete_data
-                    ? <Link to={`/plant/${props.trefle_id}`}><button>Details</button></Link>
+                    ? <Link to={`/plant/${props.trefle_id}`}><button>See Details</button></Link>
                     : null
                 }
-                <button onClick={handleAddPlant}>Add Plant</button>
+                <button onClick={handleAddPlant}>Add to Garden</button>
             </div>
         </li>
     )

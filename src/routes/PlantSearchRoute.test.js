@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import RegistrationForm from './RegistrationForm';
+import PlantSearch from './PlantSearchRoute';
 
-it('Renders the RegistrationForm component', () => {
+it('Renders the PlantSearch component', () => {
     const div = document.createElement('div');
 
-    ReactDOM.render(<RegistrationForm />, div);
+    ReactDOM.render(<PlantSearch />, div);
 
     ReactDOM.unmountComponentAtNode(div);
 });

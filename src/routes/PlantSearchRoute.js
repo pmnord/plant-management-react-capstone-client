@@ -1,19 +1,21 @@
-import React from 'react'
-import PlantSearchListItem from '../components/PlantSearchListItem/PlantSearchListItem'
-import config from '../config'
+import React from 'react';
+import PlantSearchListItem from '../components/PlantSearchListItem/PlantSearchListItem';
+import config from '../config';
 
+// Provides a search form to look up plants in the Trefle API database.
+// Searches based on both scientific_name and common_name
 export default class PlantSearchRoute extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             error: null,
             searchResults: [],
-        }
+        };
     }
 
     handleSearchSubmit = e => {
         e.preventDefault();
-        this.setState({ error: null })
+        this.setState({ error: null });
 
         const query = e.target.plant_search.value;
 
@@ -28,28 +30,28 @@ export default class PlantSearchRoute extends React.Component {
                     : res.json()
             )
             .then(results => {
-                const sortedResults = results.sort((a, b) => a.complete_data === b.complete_data ? 0 : a.complete_data ? -1 : 1)
-                this.setState({ searchResults: sortedResults })
+                const sortedResults = results.sort((a, b) => a.complete_data === b.complete_data ? 0 : a.complete_data ? -1 : 1);
+                this.setState({ searchResults: sortedResults });
             }
             )
             .catch(res => {
-                this.setState({ error: res.error })
-            })
+                this.setState({ error: res.error });
+            });
     }
 
     render() {
         return (
             <section className="plant-search">
                 <div>
-                    <p>Data is being provided from the Trefle.io database and may not be complete with images and details for all plants.</p>
-                    <p>Contribute to the Trefle project by <a href="https://trefle.io/species_proposals/create" target="_blank" rel="noopener noreferrer">helping to fill out the database!</a></p>
+                    <p className="plant-search__disclaimer">Data is provided from the Trefle.io database and is still being populated with images and details for all plants.</p>
                 </div>
 
                 <form onSubmit={this.handleSearchSubmit}>
-                    <label htmlFor="plant_search" hidden>Plant Name</label>
+                    <label htmlFor="plant_search_input" className="hidden">Plant Name</label>
                     <input
                         className="plant-search__search-input"
                         name="plant_search"
+                        id="plant_search_input"
                         type="text"
                         placeholder="Search by plant names"
                     />
@@ -63,7 +65,7 @@ export default class PlantSearchRoute extends React.Component {
                     }
                 </p>
 
-
+                {/* Search results populated as components in an unordered list */}
                 <ul className="plant-search__search-results">
                     {this.state.searchResults.map((result, idx) => {
                         return (
