@@ -1,20 +1,26 @@
-import React from 'react'
-import config from '../config'
-import TokenService from '../services/token-service'
+import React from 'react';
+import config from '../config';
+import TokenService from '../services/token-service';
+import xss from 'xss';
 
+/* Provides images and data about a specific plant from the Trefle API.
 
+As the Trefle API is being updated with new data still, it's better to fetch on every load than
+to cache the data on our own server. */
 export default class PlantDetails extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             error: null,
             details: {},
             images: [],
-        }
+            plant: {},
+            raw_data: false
+        };
     }
 
     componentDidMount = () => {
-        const trefle_id = this.props.router.match.params.plant_id
+        const trefle_id = this.props.router.match.params.plant_id;
 
         fetch(`${config.API_ENDPOINT}/plant/${trefle_id}`, {
             headers: {
@@ -50,19 +56,22 @@ export default class PlantDetails extends React.Component {
                 this.setState({
                     details,
                     images: data.images,
-                })
+                    plant: data,
+                    complete_data: data.main_species.complete_data
+                });
+
             })
-            .catch(res => this.setState({ error: res.error }))
+            .catch(res => this.setState({ error: res.error }));
     }
 
-    labelize(str) {
+    labelize(str) { // Uppercase the first char of every word
         return str
             .split('_')
             .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(' ')
+            .join(' ');
     }
 
-    handleAddPlant = () => {
+    handleAddPlant = () => { // Add a plant to the user's garden
         const {
             scientific_name,
             common_name,
@@ -75,7 +84,7 @@ export default class PlantDetails extends React.Component {
             shade_tolerance,
             drought_tolerance,
             flower_color,
-        } = this.state.details
+        } = this.state.details; // Destructure the variables the server needs off of state
 
         const plantToAdd = {
             trefle_id: this.props.router.match.params.plant_id,
@@ -91,7 +100,7 @@ export default class PlantDetails extends React.Component {
             shade_tolerance,
             drought_tolerance,
             flower_color,
-        }
+        };
 
         return fetch(`${config.API_ENDPOINT}/garden`, {
             method: 'POST',
@@ -107,25 +116,62 @@ export default class PlantDetails extends React.Component {
                     ? res.json().then(e => Promise.reject(e))
                     : this.props.router.history.push('/garden')
             )
-            .catch(res => console.log(res.error))
+            .catch(res => console.log(res.error));
+    }
+
+    recurseDataIntoLists(data) { // For displaying raw data, recursively create <ul> and <li> elements
+        let listItems = '';
+
+        for (let el in data) {
+            if (typeof data[el] === 'object') {
+                listItems += `<li>${el}: ${this.recurseDataIntoLists(data[el])}</li>`;
+            } else {
+                listItems += `<li>${el}: ${data[el]}</li>`;
+            }
+        }
+
+        return `<ul>${listItems}</ul>`;
+    }
+
+    toggleRawData = () => {
+        return this.setState({ raw_data: !this.state.raw_data });
     }
 
     render() {
+
         return (
             <div className='plant-details'>
                 <button onClick={this.props.router.history.goBack}>Back</button>
+
+                {this.state.complete_data === false
+                    ? <h2>The data for this plant is tagged <strong>'incomplete'</strong> in the Trefle.io database and may have limited information.</h2>
+                    : null}
+
                 <div className="plant-details__innerdiv">
                     <div className="plant-details__images">
                         {this.state.images.map((image, idx) => <img key={idx} src={image.url} alt={`${this.state.details.scientific_name}`} />)}
                     </div>
                     <div className="plant-details__details">
                         {Object.entries(this.state.details).map((detail, idx) =>
-                            <p key={idx}><strong>{this.labelize(detail[0])}: </strong>{detail[1]}</p>
+                            detail[1]
+                                ? <p key={idx}><strong>{this.labelize(detail[0])}: </strong>{detail[1]}</p>
+                                : null
                         )}
-                        <a rel="noopener noreferrer" target="_blank" href={`https://en.wikipedia.org/wiki/${this.state.details.genus}`}><p>Wikipedia</p></a>
+                        {this.state.details.genus
+                            ? <a rel="noopener noreferrer" target="_blank" href={`https://en.wikipedia.org/wiki/${this.state.details.genus}`}><p>Wikipedia</p></a>
+                            : null}
+
                         <button onClick={this.handleAddPlant}>Add to My Garden</button>
                     </div>
                 </div>
+                <button className="plant-details__raw-data-button" onClick={this.toggleRawData}>Raw Data</button>
+                {this.state.raw_data &&
+                    <div className='plant-details__raw-data'>
+                        <a download={`${this.state.plant.scientific_name.toLowerCase().replace(' ', '_')}.json`} href={`data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(this.state.plant))}`}>Download as JSON</a>
+                        {/* Using dangerouslySetInnerHTML potentially exposes us if the Trefle API is compromised,
+                            so we're using the xss package to escape any dangerous tags from the code */}
+                        <div dangerouslySetInnerHTML={{ __html: xss(this.recurseDataIntoLists(this.state.plant)) }}></div>
+                    </div>}
             </div>
         )
     }

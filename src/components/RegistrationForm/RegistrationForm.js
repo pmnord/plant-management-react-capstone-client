@@ -1,7 +1,8 @@
-import React from 'react'
-import config from '../../config'
-import TokenService from '../../services/token-service'
+import React from 'react';
+import config from '../../config';
+import TokenService from '../../services/token-service';
 
+// Handles new user registration
 export default class RegistrationForm extends React.Component {
     constructor(props) {
         super(props)
@@ -11,16 +12,16 @@ export default class RegistrationForm extends React.Component {
             email: '',
             password: '',
             error: null,
-        }
+        };
     }
 
     updateFormValue(input, value) {
-        this.setState({ [input]: value })
+        this.setState({ [input]: value });
     }
 
     handleFormSubmit = (e) => {
-        e.preventDefault()
-        this.setState({ error: null })
+        e.preventDefault();
+        this.setState({ error: null });
 
         const { username, email, password } = e.target
         const newUser = {
@@ -37,24 +38,24 @@ export default class RegistrationForm extends React.Component {
             },
             body: JSON.stringify(newUser)
         })
-            .then(res => {
-                if (!res.ok) {
-                    return res.json().then(err => Promise.reject(err))
-                }
-                return res.json()
-            })
-            .then(resJson => {
+        .then(res => {
+            if (!res.ok) {
+                return res.json().then(err => Promise.reject(err))
+            }
+            return res.json()
+        })
+        .then(resJson => {
 
-                username.value = ''
-                email.value = ''
-                password.value = ''
+            username.value = ''
+            email.value = ''
+            password.value = ''
 
-                return this.onRegistrationSuccess(newUser)
-            })
-            .catch(err => {
-                console.log(err)
-                this.setState({ error: err.error })
-            })
+            return this.onRegistrationSuccess(newUser)
+        })
+        .catch(err => {
+            console.log(err)
+            this.setState({ error: err.error })
+        });
     }
 
     onRegistrationSuccess(newUser) {
@@ -98,7 +99,6 @@ export default class RegistrationForm extends React.Component {
                         value={this.state.username}
                         onChange={(e) => this.updateFormValue(e.target.name, e.target.value)}
                     />
-                    <div className="error"></div>
                 </div>
                 <div>
                     <label htmlFor="email">Email</label>
@@ -109,7 +109,6 @@ export default class RegistrationForm extends React.Component {
                         value={this.state.email}
                         onChange={(e) => this.updateFormValue(e.target.name, e.target.value)}
                     />
-                    <div className="error"></div>
                 </div>
                 <div>
                     <label htmlFor="password">Password</label>
@@ -121,7 +120,6 @@ export default class RegistrationForm extends React.Component {
                         value={this.state.password}
                         onChange={(e) => this.updateFormValue(e.target.name, e.target.value)}
                     />
-                    <div className="error"></div>
                 </div>
                 <button>Register</button>
                 <div className='error'>{this.state.error}</div>

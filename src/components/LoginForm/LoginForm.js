@@ -1,22 +1,23 @@
-import React from 'react'
-import config from '../../config'
-import TokenService from '../../services/token-service'
+import React from 'react';
+import config from '../../config';
+import TokenService from '../../services/token-service';
 
+// Handles log in functionality
 export default class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             error: null,
-        }
+        };
     }
 
     handleLoginSubmit = e => {
-        e.preventDefault()
+        e.preventDefault();
         
-        this.setState({ error: null })
+        this.setState({ error: null });
 
-        const username = e.target.username.value
-        const password = e.target.password.value
+        const username = e.target.username.value;
+        const password = e.target.password.value;
 
         fetch(`${config.API_ENDPOINT}/auth/login`, {
             method: 'POST',
@@ -27,17 +28,17 @@ export default class LoginForm extends React.Component {
             body: JSON.stringify({ username, password }),
         })
             .then(res => {
-                if (!res.ok) return res.json().then(err => Promise.reject(err))
-                return res.json()
+                if (!res.ok) return res.json().then(err => Promise.reject(err));
+                return res.json();
             })
             .then(res => {
-                TokenService.setToken(res.authToken)
-                this.props.updateLoggedIn()
-                this.props.router.history.push(`/garden`)
+                TokenService.setToken(res.authToken); // The server provides a JWT auth token
+                this.props.updateLoggedIn(); // Sets LoggedIn on the parent component state
+                this.props.router.history.push(`/garden`);
             })
             .catch(err => {
-                this.setState({ error: err.error })
-            })
+                this.setState({ error: err.error });
+            });
     }
 
     render() {
