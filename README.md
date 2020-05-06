@@ -4,9 +4,7 @@ Fancy Plants is a plant management application for tracking a collection of plan
 
 [Demo](https://fancy-plants.pmnord.now.sh/)
 
-[API Documentation](https://github.com/pmnord/plant-management-react-capstone-server)
-
-## Technologies
+[Backend Documentation](https://github.com/pmnord/plant-management-react-capstone-server)
 
 | | | | | |
 |-|-|-|-|-|
