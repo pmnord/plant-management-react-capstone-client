@@ -1,6 +1,7 @@
 import React from 'react';
 
-// Any class component with a componentDidCatch() lifecycle method or static getDerivedStateFromError() can act as an error boundary.
+// Any class component with a componentDidCatch() lifecycle method 
+// or static getDerivedStateFromError() can act as an error boundary.
 
 export default class ErrorBoundary extends React.Component {
     constructor(props) {
