@@ -1,122 +1,69 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom'
-import Header from '../Header/Header'
-import Footer from '../Footer/Footer'
-import RegistrationForm from '../RegistrationForm/RegistrationForm'
-import LoginForm from '../LoginForm/LoginForm'
-import Garden from '../Garden/Garden'
-import PlantSearch from '../PlantSearch/PlantSearch'
-import PlantDetails from '../PlantDetails/PlantDetails'
-import moment from 'moment'
+import { Switch } from 'react-router-dom';
 
-import PrivateRoute from '../../routes/PrivateRoute'
-import PublicOnlyRoute from '../../routes/PublicOnlyRoute'
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import PlantSearchRoute from '../../routes/PlantSearchRoute';
+import PlantDetailsRoute from '../../routes/PlantDetailsRoute';
+import GardenRoute from '../../routes/GardenRoute';
+import LoginRoute from '../../routes/LoginRoute';
+import HomeRoute from '../../routes/HomeRoute';
+import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
 
-export default class App extends React.Component {
+import PrivateRoute from '../../routes/utils/PrivateRoute';
+import PublicOnlyRoute from '../../routes/utils/PublicOnlyRoute';
+import TokenService from '../../services/token-service';
+
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      plants: [
-        {
-          id: "157554",
-          common_name: "tarovine",
-          scientific_name: "Monstera deliciosa",
-          genus: "Monstera",
-          duration: "Perennial",
-          image: "https://upload.wikimedia.org/wikipedia/commons/0/04/Monstera_deliciosa3.jpg",
-          note: '',
-          last_watered: '',
-        },
-        {
-          id: "157554",
-          common_name: "tarovine",
-          scientific_name: "Monstera deliciosa",
-          genus: "Monstera",
-          duration: "Perennial",
-          image: "https://upload.wikimedia.org/wikipedia/commons/0/04/Monstera_deliciosa3.jpg",
-          note: '',
-          last_watered: '',
-        },
-        {
-          id: "157554",
-          common_name: "tarovine",
-          scientific_name: "Monstera deliciosa",
-          genus: "Monstera",
-          duration: "Perennial",
-          image: "https://upload.wikimedia.org/wikipedia/commons/0/04/Monstera_deliciosa3.jpg",
-          note: '',
-          last_watered: '',
-        },
-
-      ]
-    }
+      loggedIn: TokenService.hasToken()
+    };
   }
 
-  updateNote = (e, idx) => {
-    const newValue = e.target.value
-    const newState = { plants: [...this.state.plants] }
-    newState.plants[idx].note = newValue
-
-    this.setState(newState)
-  }
-
-  updateWatered = (idx) => {
-    const newState = { plants: [...this.state.plants] }
-    newState.plants[idx].last_watered = moment().format('MMMM Do h:mm a')
-
-    this.setState(newState)
-  }
-
-  addPlant = (newPlant) => {
-    const newPlants = [...this.state.plants]
-    newPlants.push(newPlant)
-    const newState = { plants: newPlants }
-    this.setState(newState)
+  // Keeps the Header component in sync with whether the user is logged in or not for conditional rendering purposes
+  updateLoggedIn = () => {
+    this.setState({ loggedIn: TokenService.hasToken() });
   }
 
   render() {
     return (
       <div className="app">
-        <Header />
-        <h2 className="demo-banner" style={{ backgroundColor: 'yellow', textAlign: 'center' }}>This is just a demo. Please take a moment to <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScdox25FniERn2kj8FeQ7NKcxT4rrgI6f0TF0snnW07Y9g_vw/viewform?usp=sf_link">leave feedback on this form.</a> Thanks!</h2>
+        <Header handleLogout={this.updateLoggedIn} />
         <main className="main">
-
-          <Switch>
-
-            <PublicOnlyRoute>
-              <Route
+          <ErrorBoundary>
+            <Switch>
+              <PublicOnlyRoute
                 exact
                 path={'/'}
-                render={() => <Garden />}
+                component={(router) => <HomeRoute updateLoggedIn={this.updateLoggedIn} router={router} />}
               />
-              <Route
+              <PublicOnlyRoute
                 exact
                 path={'/login'}
-                component={LoginForm}
+                component={(router) => <LoginRoute updateLoggedIn={this.updateLoggedIn} router={router} />}
               />
-            </PublicOnlyRoute>
-
-            <PrivateRoute>
-              <Route
-                path={'/garden/:username'}
-                render={() => <Garden plants={this.state.plants} updateNote={this.updateNote} updateWatered={this.updateWatered} />}
+              <PrivateRoute
+                path={'/garden'}
+                component={(router) => <GardenRoute router={router} />}
               />
-              <Route
+              <PrivateRoute
                 exact
-                path={'/plant-search'}
-                component={PlantSearch}
+                path={'/plant'}
+                component={PlantSearchRoute}
               />
-              <Route
+              <PrivateRoute
                 path={'/plant/:plant_id'}
-                render={(r) => <PlantDetails addPlant={this.addPlant} router={r} />}
+                component={(router) => <PlantDetailsRoute router={router} />}
               />
-            </PrivateRoute>
-
-          </Switch>
-
+            </Switch>
+          </ErrorBoundary>
         </main >
         <Footer />
       </div>
     );
   }
-}
+};
+
+export default App;

@@ -1,4 +1,5 @@
 export default {
-    API_ENDPOINT: `http://localhost:8000/api`,
-    TOKEN_KEY: `fancyplants-client-auth-token`,
+    API_ENDPOINT: process.env.REACT_APP_FANCYPLANTS_SERVER,
+    API_KEY: process.env.REACT_APP_FANCYPLANTS_API_KEY,
+    TOKEN_KEY: `Authorization`,
 }

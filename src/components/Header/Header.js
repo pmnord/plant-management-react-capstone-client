@@ -1,35 +1,59 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import TokenService from '../../services/token-service'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import TokenService from '../../services/token-service';
 
-export default function Header(props) {
+export default class Header extends React.Component {
 
-    function renderLoginButton() {
+    handleLogoutclick = () => {
+        TokenService.clearToken()
+        this.props.handleLogout()
+    }
+
+    renderLoginButton() {
         return (
-            <Link to='/login'>
-                <button>Log In</button>
-            </Link>
+            <div>
+                <Link
+                    to='/login'>
+                    <button
+                    >Log In
+                    </button>
+                </Link>
+            </div>
         )
     }
 
-    function renderLogoutButton() {
+    renderLogoutButton() {
         return (
-            <button onClick={TokenService.clearToken}>Log Out</button>
+            <div>
+                <Link to="/plant" className="mobile-hidden">
+                    <button >Search All Plants</button>
+                </Link>
+                <Link to="/garden">
+                    <button>My Garden</button>
+                </Link>
+                <Link to="/">
+                    <button onClick={this.handleLogoutclick}>Log Out</button>
+                </Link>
+            </div>
         )
     }
 
-
-    return (
-        <header className="header">
-            <Link to='/'>
-                <h1>Fancy Plants</h1>
-            </Link>
-            {
-                TokenService.hasToken()
-                    ? renderLogoutButton()
-                    : renderLoginButton()
-            }
-
-        </header>
-    )
+    render() {
+        return (
+            <header className="header">
+                <nav className="header__nav">
+                    <h1>
+                        {/* Redirects based on Public or Protected route */}
+                        <Link to='/'>
+                            Fancy Plants
+                        </Link>
+                    </h1>
+                    {/* Conditionally render Login or Logout */}
+                    {TokenService.hasToken()
+                        ? this.renderLogoutButton()
+                        : this.renderLoginButton()}
+                </nav>
+            </header>
+        )
+    }
 }
