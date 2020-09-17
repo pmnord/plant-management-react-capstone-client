@@ -9,7 +9,6 @@ export default class RegistrationForm extends React.Component {
 
         this.state = {
             username: '',
-            email: '',
             password: '',
             error: null,
         };
@@ -97,16 +96,6 @@ export default class RegistrationForm extends React.Component {
                         name="username"
                         required
                         value={this.state.username}
-                        onChange={(e) => this.updateFormValue(e.target.name, e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        name="email"
-                        required
-                        value={this.state.email}
                         onChange={(e) => this.updateFormValue(e.target.name, e.target.value)}
                     />
                 </div>

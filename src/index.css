@@ -165,8 +165,6 @@ input {
   min-width: 15em;
   background-color: hsla(0, 0%, 95%, 0.92);
   border-radius: 3px;
-  box-shadow: 2px 2px 2px var(--black);
-  border: solid 0.5px var(--black);
 }
 
 .LoginRoute {
