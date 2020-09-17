@@ -112,6 +112,7 @@ export default class RegistrationForm extends React.Component {
                 </div>
                 <button>Register</button>
                 <div className='error'>{this.state.error}</div>
+                
             </form>
         )
     }

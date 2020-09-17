@@ -14,14 +14,20 @@ export default class Garden extends React.Component {
             plants: [],
             plantsCache: []
         };
+        this._isMounted = false;
     }
 
     // Retrieve a user's plants and set them in the component state
     componentDidMount = () => {
-        ApiService
+        this._isMounted = true;
+        this._isMounted && ApiService
             .getUserPlants()
-            .then(plants => this.setState({ plants: plants, plantsCache: plants }))
-            .catch(err => this.setState({ error: err }));
+            .then(plants => this._isMounted && this.setState({ plants: plants, plantsCache: plants }))
+            .catch(err => this._isMounted && this.setState({ error: err }));
+    }
+
+    componentWillUnmount = () => {
+        this._isMounted = false;
     }
 
     updateNote = (e, idx) => {

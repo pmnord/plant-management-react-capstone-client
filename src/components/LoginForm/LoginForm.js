@@ -56,6 +56,7 @@ export default class LoginForm extends React.Component {
                     </div>
                     <button >Submit</button>
                     <div className='error'>{this.state.error}</div>
+                    <p style={{ fontSize:'0.8rem',color:' hsla(0, 0%, 40%)',textAlign:'center'}}>* To demo the app, use the credentials: demo/password</p>
                 </form>
         )
     }
