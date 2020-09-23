@@ -17,7 +17,6 @@ button {
   margin: 0.5em;
   padding: 0.5em 1em;
   border-radius: 6px;
-  /* border: var(--black) 1px solid; */
   border: none;
   box-shadow: 1px 1px 2px var(--black);
   background-color: white;
@@ -28,8 +27,12 @@ button {
   font-weight: bold;
 }
 button:hover {
+  background: linear-gradient(to bottom,hsl(0, 0%, 90%) 30%, hsl(0, 0%, 100%) 70%);
   cursor: pointer;
-  background:linear-gradient(to bottom,hsl(0, 0%, 90%) 5%, hsl(0, 0%, 100%) 100%);
+}
+button[disabled] {
+  cursor: default;
+  background:linear-gradient(to bottom,hsl(0, 0%, 100%) 30%, hsl(0, 0%, 90%) 70%);
 }
 
 input {

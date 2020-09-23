@@ -45,6 +45,7 @@ export default function PlantSearchListItem(props) {
                 }
             </div>
             <div className="plant-search__list-item__buttons">
+            <Link to={`/plant/${props.trefle_id}`}><button>See Details</button></Link>
                 {props.complete_data
                     ? <Link to={`/plant/${props.trefle_id}`}><button>See Details</button></Link>
                     : null

@@ -149,7 +149,7 @@ export default class PlantDetails extends React.Component {
 
                 <div className="plant-details__innerdiv">
                     <div className="plant-details__images">
-                        {this.state.images.map((image, idx) => <img key={idx} src={image.url} alt={`${this.state.details.scientific_name}`} />)}
+                        {this.state.images && this.state.images.map((image, idx) => <img key={idx} src={image.url} alt={`${this.state.details.scientific_name}`} />)}
                     </div>
                     <div className="plant-details__details">
                         {Object.entries(this.state.details).map((detail, idx) =>
