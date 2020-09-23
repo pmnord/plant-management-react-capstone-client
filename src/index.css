@@ -77,10 +77,15 @@ input {
 }
 
 .footer p {
-  margin: 0.6rem;
+  margin: 1rem;
 }
 
 .footer a {
+  color: hsl(120, 20%, 42%);
+}
+
+.footer__source svg {
+  padding-right: 0.5rem;
   color: hsl(120, 20%, 42%);
 }
 
