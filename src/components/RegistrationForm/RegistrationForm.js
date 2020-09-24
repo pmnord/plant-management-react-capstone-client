@@ -10,6 +10,7 @@ export default class RegistrationForm extends React.Component {
         this.state = {
             username: '',
             password: '',
+            submitting: false,
             error: null,
         };
     }
@@ -20,12 +21,11 @@ export default class RegistrationForm extends React.Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault();
-        this.setState({ error: null });
+        this.setState({ error: null, submitting: true });
 
         const { username, email, password } = e.target
         const newUser = {
             username: username.value,
-            email: email.value,
             password: password.value,
         }
 
@@ -53,7 +53,7 @@ export default class RegistrationForm extends React.Component {
         })
         .catch(err => {
             console.log(err)
-            this.setState({ error: err.error })
+            this.setState({ error: err.error || 'Unable to register at this time', submitting: false })
         });
     }
 
@@ -81,7 +81,7 @@ export default class RegistrationForm extends React.Component {
                 this.props.router.history.push(`/garden`)
             })
             .catch(err => {
-                this.setState({ error: err.error })
+                this.setState({ error: err.error || 'Unable to register at this time', submitting: false })
             })
     }
 
@@ -110,7 +110,7 @@ export default class RegistrationForm extends React.Component {
                         onChange={(e) => this.updateFormValue(e.target.name, e.target.value)}
                     />
                 </div>
-                <button>Register</button>
+                <button disabled={this.state.submitting}>{ this.state.submitting ? 'Loading...' : 'Register' }</button>
                 <div className='error'>{this.state.error}</div>
                 
             </form>
