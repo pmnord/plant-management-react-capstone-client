@@ -1,0 +1,17 @@
+.tooltip {
+  position: relative;
+  display: inline-block;
+  margin: 0 0.2rem;
+  font-size: 0.8rem;
+}
+
+.tooltip__box {
+  position: absolute;
+  top: -25;
+  width: 12rem;
+  background-color: white;
+  color: hsl(0, 0%, 40%);
+  border-radius: 5px;
+  padding: .4rem;
+  box-shadow: 0 0 3px rgba(51, 51, 51, 0.3);
+}

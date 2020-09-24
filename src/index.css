@@ -121,7 +121,7 @@ input {
   max-width: 1000px;
   display: flex;
   flex-direction: column;
-  background-image: url('./resources//kendal-TW2bfT_tWDI-unsplash.jpg');
+  background-image: url('./assets/kendal-TW2bfT_tWDI-unsplash.jpg');
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: center;
