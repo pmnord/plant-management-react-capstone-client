@@ -23,7 +23,7 @@ export default class RegistrationForm extends React.Component {
         e.preventDefault();
         this.setState({ error: null, submitting: true });
 
-        const { username, email, password } = e.target
+        const { username, password } = e.target
         const newUser = {
             username: username.value,
             password: password.value,
@@ -46,7 +46,6 @@ export default class RegistrationForm extends React.Component {
         .then(resJson => {
 
             username.value = ''
-            email.value = ''
             password.value = ''
 
             return this.onRegistrationSuccess(newUser)
