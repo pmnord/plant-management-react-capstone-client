@@ -271,9 +271,17 @@ iframe {
   margin: 0.5em;
 }
 
-.garden-hud__filter {
-  height: 2em;
+.garden-filter {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.garden-filter__input {
+  height: 1.3rem;
   border-radius: 5px;
+  margin-left: 0.5rem;
 }
 
 .plant-search__disclaimer {
@@ -382,14 +390,14 @@ iframe {
 }
 
 @media screen and (max-width: 1120px) {
-  .garden-hud__filter {
+  .garden-filter__input {
     width: 20em;
   }
 }
 
 @media screen and (min-width: 1121px) {
-  .garden-hud__filter {
-    width: 40em;
+  .garden-filter__input {
+    width: 20rem;
   }
 
   .mobile-hidden {

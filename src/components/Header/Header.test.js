@@ -12,6 +12,6 @@ it('Renders the Header component', () => {
             <Header />
         </BrowserRouter>
         , div);
-
+        
     ReactDOM.unmountComponentAtNode(div);
 });

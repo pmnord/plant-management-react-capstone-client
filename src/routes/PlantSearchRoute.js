@@ -1,5 +1,6 @@
 import React from 'react';
 import PlantSearchListItem from '../components/PlantSearchListItem/PlantSearchListItem';
+import Toolbar from '../components/Toolbar/Toolbar';
 import config from '../config';
 
 // Provides a search form to look up plants in the Trefle API database.
@@ -42,6 +43,7 @@ export default class PlantSearchRoute extends React.Component {
     render() {
         return (
             <section className="plant-search">
+                <Toolbar></Toolbar>
                 <div>
                     <p className="plant-search__disclaimer">Data is provided from the Trefle.io database and is still being populated with images and details for all plants.</p>
                 </div>

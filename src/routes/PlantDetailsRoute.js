@@ -2,6 +2,7 @@ import React from 'react';
 import config from '../config';
 import TokenService from '../services/token-service';
 import xss from 'xss';
+import Toolbar from '../components/Toolbar/Toolbar';
 
 /* Provides images and data about a specific plant from the Trefle API.
 
@@ -141,6 +142,7 @@ export default class PlantDetails extends React.Component {
 
         return (
             <div className='plant-details'>
+                <Toolbar></Toolbar>
                 <button onClick={this.props.router.history.goBack}>Back</button>
 
                 {this.state.complete_data === false
