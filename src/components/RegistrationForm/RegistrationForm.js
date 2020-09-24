@@ -1,6 +1,6 @@
 import React from 'react';
 import config from '../../config';
-import TokenService from '../../services/token-service';
+import TokenService from '../../services/tokenService';
 
 // Handles new user registration
 export default class RegistrationForm extends React.Component {

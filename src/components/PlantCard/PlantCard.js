@@ -1,6 +1,6 @@
 import React from 'react';
 import config from '../../config';
-import TokenService from '../../services/token-service';
+import TokenService from '../../services/tokenService';
 
 // Represents a Plant in the User's garden and provides interactions
 export default function PlantCard(props) {

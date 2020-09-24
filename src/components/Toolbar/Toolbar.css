@@ -1,3 +1,4 @@
 .toolbar {
     display: flex;
+    border-bottom: solid 1px hsl(0, 0%, 80%);
 }

@@ -253,29 +253,12 @@ iframe {
   width: 100%;
 }
 
-.garden-hud {
-  display: flex;
-  align-items: center;
-}
-
-.garden-hud button {
-  margin-right: 1em;
-  display: block;
-}
-
-.garden-hud a {
-  text-decoration: none;
-}
-
-.garden-hud label {
-  margin: 0.5em;
-}
-
 .garden-filter {
   display: flex;
   align-items: flex-end;
   justify-content: center;
   font-size: 1.3rem;
+  margin: 1rem 0;
 }
 
 .garden-filter__input {
@@ -335,8 +318,8 @@ iframe {
   text-align: center;
 }
 
-.plant-search__search-input {
-  width: 60%;
+.plant-search__input {
+  width: 40%;
   height: 2.2em;
   border-radius: 5px;
 }
@@ -415,21 +398,6 @@ iframe {
       width: 80%;
       margin: 0 auto;
       max-width: 1000px;
-    }
-    
-    .garden-hud {
-      padding: 1em;
-    }
-    
-    .garden-hud button {
-      margin-right: 5em;
-      display: inline;
-    }
-    
-    .garden-hud__filter {
-      height: 2em;
-      border-radius: 5px;
-      margin-left: 0.5em;
     }
 
     .HomeRoute__authentication {

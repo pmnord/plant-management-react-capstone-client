@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import config from '../../config';
-import TokenService from '../../services/token-service';
+import TokenService from '../../services/tokenService';
 
 // List Item representing a search result when a user searches for plants in the Trefle database
 export default function PlantSearchListItem(props) {

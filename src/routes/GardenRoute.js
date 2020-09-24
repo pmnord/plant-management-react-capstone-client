@@ -1,7 +1,6 @@
 import React from "react";
 import PlantCard from "../components/PlantCard/PlantCard";
-import { Link } from "react-router-dom";
-import ApiService from "../services/api-service";
+import ApiService from "../services/apiService";
 import moment from "moment";
 import Toolbar from "../components/Toolbar/Toolbar";
 
@@ -101,8 +100,7 @@ export default class Garden extends React.Component {
 
     return (
       <div className="garden">
-        <Toolbar>
-        </Toolbar>
+        <Toolbar />
           <div className="garden-filter">
               <label htmlFor="garden-filter__input">
                 <strong>Filter:</strong>

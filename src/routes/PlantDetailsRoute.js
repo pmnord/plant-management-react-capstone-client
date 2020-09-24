@@ -1,6 +1,6 @@
 import React from 'react';
 import config from '../config';
-import TokenService from '../services/token-service';
+import TokenService from '../services/tokenService';
 import xss from 'xss';
 import Toolbar from '../components/Toolbar/Toolbar';
 

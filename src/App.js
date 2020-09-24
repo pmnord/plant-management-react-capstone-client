@@ -1,18 +1,18 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-import PlantSearchRoute from '../../routes/PlantSearchRoute';
-import PlantDetailsRoute from '../../routes/PlantDetailsRoute';
-import GardenRoute from '../../routes/GardenRoute';
-import LoginRoute from '../../routes/LoginRoute';
-import HomeRoute from '../../routes/HomeRoute';
-import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import PlantSearchRoute from './routes/PlantSearchRoute';
+import PlantDetailsRoute from './routes/PlantDetailsRoute';
+import GardenRoute from './routes/GardenRoute';
+import LoginRoute from './routes/LoginRoute';
+import HomeRoute from './routes/HomeRoute';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
-import PrivateRoute from '../../routes/utils/PrivateRoute';
-import PublicOnlyRoute from '../../routes/utils/PublicOnlyRoute';
-import TokenService from '../../services/token-service';
+import PrivateRoute from './routes/utils/PrivateRoute';
+import PublicOnlyRoute from './routes/utils/PublicOnlyRoute';
+import TokenService from './services/tokenService';
 
 class App extends React.Component {
   constructor(props) {
