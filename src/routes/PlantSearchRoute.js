@@ -23,7 +23,7 @@ export default class PlantSearchRoute extends React.Component {
     ApiService.getTreflePlants(query)
       .then((results) => {
         console.log(results);
-        this.setState({ searchResults: results.data });
+        this.setState({ searchResults: results });
       })
       .catch((res) => {
         this.setState({ error: res.error });
