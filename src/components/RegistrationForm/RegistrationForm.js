@@ -1,7 +1,7 @@
-import React from "react";
-import config from "../../config";
-import TokenService from "../../services/tokenService";
-import Tooltip from "../Tooltip/Tooltip";
+import React from 'react';
+import config from '../../config';
+import TokenService from '../../services/tokenService';
+import Tooltip from '../Tooltip/Tooltip';
 
 // Handles new user registration
 export default class RegistrationForm extends React.Component {
@@ -9,8 +9,8 @@ export default class RegistrationForm extends React.Component {
     super(props);
 
     this.state = {
-      username: "",
-      password: "",
+      username: '',
+      password: '',
       submitting: false,
       error: null,
     };
@@ -28,13 +28,14 @@ export default class RegistrationForm extends React.Component {
     const newUser = {
       username: username.value,
       password: password.value,
+      email: '',
     };
 
     fetch(`${config.API_ENDPOINT}/user`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "api-key": config.API_KEY,
-        "content-type": "application/json",
+        'api-key': config.API_KEY,
+        'content-type': 'application/json',
       },
       body: JSON.stringify(newUser),
     })
@@ -45,15 +46,15 @@ export default class RegistrationForm extends React.Component {
         return res.json();
       })
       .then((resJson) => {
-        username.value = "";
-        password.value = "";
+        username.value = '';
+        password.value = '';
 
         return this.onRegistrationSuccess(newUser);
       })
       .catch((err) => {
         console.log(err);
         this.setState({
-          error: err.error || "Unable to register at this time",
+          error: err.error || 'Unable to register at this time',
           submitting: false,
         });
       });
@@ -66,10 +67,10 @@ export default class RegistrationForm extends React.Component {
     };
 
     fetch(`${config.API_ENDPOINT}/auth/login`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "api-key": config.API_KEY,
-        "content-type": "application/json",
+        'api-key': config.API_KEY,
+        'content-type': 'application/json',
       },
       body: JSON.stringify(credentials),
     })
@@ -84,7 +85,7 @@ export default class RegistrationForm extends React.Component {
       })
       .catch((err) => {
         this.setState({
-          error: err.error || "Unable to register at this time",
+          error: err.error || 'Unable to register at this time',
           submitting: false,
         });
       });
@@ -92,13 +93,13 @@ export default class RegistrationForm extends React.Component {
 
   render() {
     return (
-      <form className="registration__form" onSubmit={this.handleFormSubmit}>
+      <form className='registration__form' onSubmit={this.handleFormSubmit}>
         <h2>Create an Account</h2>
         <div>
-          <label htmlFor="username">Username</label>
+          <label htmlFor='username'>Username</label>
           <input
-            type="text"
-            name="username"
+            type='text'
+            name='username'
             required
             value={this.state.username}
             onChange={(e) =>
@@ -107,18 +108,18 @@ export default class RegistrationForm extends React.Component {
           />
         </div>
         <div>
-          <label htmlFor="password">
+          <label htmlFor='password'>
             Password
-            <Tooltip content="Passwords are end-to-end encrypted and never visible to FancyPlants">
-              <span role="img" aria-label="password tooltip">
+            <Tooltip content='Passwords are end-to-end encrypted and never visible to FancyPlants'>
+              <span role='img' aria-label='password tooltip'>
                 💬
               </span>
             </Tooltip>
           </label>
           <input
-            type="password"
-            name="password"
-            minLength="6"
+            type='password'
+            name='password'
+            minLength='6'
             required
             value={this.state.password}
             onChange={(e) =>
@@ -127,9 +128,9 @@ export default class RegistrationForm extends React.Component {
           />
         </div>
         <button disabled={this.state.submitting}>
-          {this.state.submitting ? "Loading..." : "Register"}
+          {this.state.submitting ? 'Loading...' : 'Register'}
         </button>
-        <div className="error">{this.state.error}</div>
+        <div className='error'>{this.state.error}</div>
       </form>
     );
   }

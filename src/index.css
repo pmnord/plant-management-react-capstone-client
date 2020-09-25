@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Sacramento|Oswald&display=swap');
 
 :root {
-  --black:rgba(0,0,0,0.87);
+  --black: rgba(0, 0, 0, 0.87);
 }
 
 body {
   margin: 0;
-  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -20,19 +20,31 @@ button {
   border: none;
   box-shadow: 1px 1px 2px var(--black);
   background-color: white;
-  background:linear-gradient(to bottom,hsl(0, 0%, 100%) 30%, hsl(0, 0%, 90%) 70%);
-  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  background: linear-gradient(
+    to bottom,
+    hsl(0, 0%, 100%) 30%,
+    hsl(0, 0%, 90%) 70%
+  );
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   font-weight: bold;
 }
 button:hover {
-  background: linear-gradient(to bottom,hsl(0, 0%, 90%) 30%, hsl(0, 0%, 100%) 70%);
+  background: linear-gradient(
+    to bottom,
+    hsl(0, 0%, 90%) 30%,
+    hsl(0, 0%, 100%) 70%
+  );
   cursor: pointer;
 }
 button[disabled] {
   cursor: default;
-  background:linear-gradient(to bottom,hsl(0, 0%, 100%) 30%, hsl(0, 0%, 90%) 70%);
+  background: linear-gradient(
+    to bottom,
+    hsl(0, 0%, 100%) 30%,
+    hsl(0, 0%, 90%) 70%
+  );
 }
 
 input {
@@ -52,7 +64,7 @@ input {
 
 .header a {
   text-decoration: none;
-  color: var(--black); 
+  color: var(--black);
 }
 
 .header h1 {
@@ -138,13 +150,12 @@ input {
   width: 100%;
   height: auto;
   margin: 0;
-  background-color: hsla(0, 0%, 100%, 0.90);
+  background-color: hsla(0, 0%, 100%, 0.9);
 }
 
 .HomeRoute__pitch p {
   margin: 0.5em;
   font-size: 1.2em;
-  
 }
 
 .HomeRoute__authentication .login {
@@ -156,7 +167,7 @@ input {
   flex-direction: column;
   align-items: center;
   padding: 0 0.5em;
-  background-color: hsla(0, 0%, 100%, 0.90);
+  background-color: hsla(0, 0%, 100%, 0.9);
 }
 
 .registration__form label,
@@ -192,7 +203,7 @@ input {
   padding: 1em;
   margin: 1em;
   padding-top: 0.1em;
-  
+
   border-radius: 12px;
   box-shadow: 5px 5px 5px var(--black);
 }
@@ -281,35 +292,6 @@ iframe {
   text-decoration: none;
 }
 
-.plant-search__list-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  background-color: #eee;
-  margin: 1em 0;
-  padding: 0.5em 1em;
-  width: 100%;
-  box-sizing: border-box;
-
-  color: var(--black);
-}
-
-.plant-search__list-item:nth-child(2n) {
-  background-color: #ddd;
-}
-
-.plant-search__list-item__buttons {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-.plant-search__plant-names p {
-  margin: 0;
-}
-
 .plant-search {
   width: 100%;
 }
@@ -388,66 +370,63 @@ iframe {
   }
 }
 
-@media screen 
-  and (min-device-width: 813px)  { 
+@media screen and (min-device-width: 813px) {
+  .main {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1000px;
+  }
 
-    .main {
-      min-height: 80vh;
-      display: flex;
-      justify-content: center;
-      width: 80%;
-      margin: 0 auto;
-      max-width: 1000px;
-    }
+  .HomeRoute__authentication {
+    width: 18em;
+  }
 
-    .HomeRoute__authentication {
-      width: 18em;
-    }
+  .HomeRoute__authentication .login {
+    display: flex;
+  }
 
-    .HomeRoute__authentication .login {
-      display: flex;
-    }
+  .HomeRoute {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2em;
+  }
 
-    .HomeRoute {
-      flex-direction: row;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 2em;
-    }
+  .HomeRoute__pitch {
+    width: 50%;
+    margin-right: 2em;
+    background-color: hsla(0, 0%, 100%, 0.9);
+    border-radius: 3px;
+    height: 233px;
+    box-sizing: border-box;
+  }
 
-    .HomeRoute__pitch {
-      width: 50%;
-      margin-right: 2em;
-      background-color: hsla(0, 0%, 100%, 0.90);
-      border-radius: 3px;
-      height: 233px;
-      box-sizing: border-box;
-    }
-    
-    .registration__form {
-      border-radius: 3px;
-      margin-bottom: 1rem;
-      height: 233px;
-    }
-    
-    .login {
-      background-color: hsla(0, 0%, 100%, 0.90);
-    }
+  .registration__form {
+    border-radius: 3px;
+    margin-bottom: 1rem;
+    height: 233px;
+  }
 
-    .plant-details__images {
-      display: flex;
-      flex-wrap: wrap;
-      width: 40%;
-      margin-right: 2em;
-      justify-content: flex-end;
-    }
+  .login {
+    background-color: hsla(0, 0%, 100%, 0.9);
+  }
 
-    .plant-details img {
-      height: 14em;
-      max-width: none;
-      border: solid 1px var(--black);
-      border-radius: 5px;
-      margin: 0.2em;
-    }
-    
+  .plant-details__images {
+    display: flex;
+    flex-wrap: wrap;
+    width: 40%;
+    margin-right: 2em;
+    justify-content: flex-end;
+  }
+
+  .plant-details img {
+    height: 14em;
+    max-width: none;
+    border: solid 1px var(--black);
+    border-radius: 5px;
+    margin: 0.2em;
+  }
 }

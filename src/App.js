@@ -18,31 +18,41 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: TokenService.hasToken()
+      loggedIn: TokenService.hasToken(),
     };
   }
 
   // Keeps the Header component in sync with whether the user is logged in or not for conditional rendering purposes
   updateLoggedIn = () => {
     this.setState({ loggedIn: TokenService.hasToken() });
-  }
+  };
 
   render() {
     return (
-      <div className="app">
+      <div className='app'>
         <Header handleLogout={this.updateLoggedIn} />
-        <main className="main">
+        <main className='main'>
           <ErrorBoundary>
             <Switch>
               <PublicOnlyRoute
                 exact
                 path={'/'}
-                component={(router) => <HomeRoute updateLoggedIn={this.updateLoggedIn} router={router} />}
+                component={(router) => (
+                  <HomeRoute
+                    updateLoggedIn={this.updateLoggedIn}
+                    router={router}
+                  />
+                )}
               />
               <PublicOnlyRoute
                 exact
                 path={'/login'}
-                component={(router) => <LoginRoute updateLoggedIn={this.updateLoggedIn} router={router} />}
+                component={(router) => (
+                  <LoginRoute
+                    updateLoggedIn={this.updateLoggedIn}
+                    router={router}
+                  />
+                )}
               />
               <PrivateRoute
                 path={'/garden'}
@@ -59,11 +69,11 @@ class App extends React.Component {
               />
             </Switch>
           </ErrorBoundary>
-        </main >
+        </main>
         <Footer />
       </div>
     );
   }
-};
+}
 
 export default App;

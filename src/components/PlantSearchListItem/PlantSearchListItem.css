@@ -1,0 +1,34 @@
+.PlantSearchListItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: hsl(0, 0%, 98%);
+  margin: 1em 0;
+  width: 100%;
+  height: 10rem;
+  box-sizing: border-box;
+
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 1.5rem;
+  box-shadow: 1px 1px 4px rgba(51, 51, 51, 0.8);
+
+  color: var(--black);
+}
+
+.PlantSearchListItem__img {
+  width: 15rem;
+  position: center;
+}
+
+.plant-search__list-item:nth-child(2n) {
+  background-color: hsl(0, 0%, 96%);
+}
+
+.plant-search__list-item__buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}

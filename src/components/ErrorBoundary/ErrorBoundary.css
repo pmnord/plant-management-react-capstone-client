@@ -1,0 +1,80 @@
+.error-boundary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 2.5rem;
+}
+
+.error-boundary h2 {
+  margin-bottom: 1rem;
+}
+
+.error-boundary h3 {
+  font-size: 1.5rem;
+}
+
+.koala {
+  background-color: darkgrey;
+  height: 11rem;
+  width: 12rem;
+  border-radius: 50%;
+  margin: 2rem;
+  position: relative;
+}
+
+.koala__ear {
+  background-color: hsl(310, 0%, 54%);
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+
+  border: 1.2rem solid hsla(0, 0%, 88%);
+}
+
+.koala__ear--1 {
+  z-index: -1;
+  position: absolute;
+  left: -20px;
+  top: -5px;
+}
+
+.koala__ear--2 {
+  z-index: -1;
+  position: absolute;
+  right: -20px;
+  top: -5px;
+}
+
+.koala__eye {
+  background-color: black;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
+
+  border: 1rem solid white;
+}
+
+.koala__eye--1 {
+  position: absolute;
+  left: 35px;
+  top: 49px;
+}
+
+.koala__eye--2 {
+  position: absolute;
+  right: 35px;
+  top: 49px;
+}
+
+.koala__nose {
+  height: 4rem;
+  width: 2.5rem;
+  background-color: hsl(0, 0%, 15%);
+  border-radius: 25%;
+
+  position: absolute;
+  left: 76px;
+  top: 69px;
+}
