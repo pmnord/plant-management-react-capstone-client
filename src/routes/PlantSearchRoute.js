@@ -10,23 +10,23 @@ export default class PlantSearchRoute extends React.Component {
     super(props);
     this.state = {
       error: null,
+      loading: false,
       searchResults: [],
     };
   }
 
   handleSearchSubmit = (e) => {
     e.preventDefault();
-    this.setState({ error: null });
+    this.setState({ error: null, loading: true, searchResults: [] });
 
     const query = e.target.plant_search.value;
 
     ApiService.getTreflePlants(query)
       .then((results) => {
-        console.log(results);
-        this.setState({ searchResults: results });
+        this.setState({ searchResults: results, loading: false });
       })
       .catch((res) => {
-        this.setState({ error: res.error });
+        this.setState({ error: res.error, loading: false });
       });
   };
 
@@ -54,7 +54,7 @@ export default class PlantSearchRoute extends React.Component {
           />
           <button>Search</button>
         </form>
-
+        {this.state.loading && <h3>Loading results...</h3>}
         <p className='error'>{this.state.error ? this.state.error : null}</p>
 
         {/* Search results populated as components in an unordered list */}

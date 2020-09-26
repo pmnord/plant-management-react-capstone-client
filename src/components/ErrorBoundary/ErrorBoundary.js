@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './ErrorBoundary.css';
 
 // Any class component with a componentDidCatch() lifecycle method
@@ -28,6 +29,7 @@ export default class ErrorBoundary extends React.Component {
         (looks like I need to have a chat with <em>koalaty</em> assurance)
       </h3>,
     ];
+
     const getKoalaPun = () => {
       return koalaPuns[Math.floor(Math.random() * koalaPuns.length)];
     };

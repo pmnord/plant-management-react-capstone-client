@@ -36,8 +36,6 @@ export default function PlantSearchListItem(props) {
       .join(' ');
   }
 
-  console.log(props.image_url);
-
   return (
     <li className='plant-search__list-item PlantSearchListItem'>
       <img
