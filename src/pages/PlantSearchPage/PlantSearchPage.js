@@ -62,15 +62,17 @@ export default class PlantSearchRoute extends React.Component {
 
         {/* Search results populated as components in an unordered list */}
         <ul className='plant-search__search-results'>
-          {this.state.searchResults.map((result) => {
+          {this.state.searchResults.map((plant) => {
             return (
               <PlantSearchListItem
-                key={result.id}
-                trefle_id={result.id}
-                scientific_name={result.scientific_name}
-                common_name={result.common_name}
-                complete_data={result.complete_data}
-                image_url={result.image_url}
+                key={plant.id}
+                trefle_id={plant.id}
+                scientific_name={plant.scientific_name}
+                common_name={plant.common_name}
+                family={plant.family}
+                family_common_name={plant.family_common_name}
+                genus={plant.genus}
+                image_url={plant.image_url}
                 push={(path) => this.props.history.push(path)}
               />
             );
