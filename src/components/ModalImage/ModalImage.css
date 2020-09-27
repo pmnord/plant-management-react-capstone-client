@@ -19,7 +19,6 @@
 
 .ModalImage__img {
   border: solid 2px black;
-  margin-bottom: 10rem;
   max-width: 90%;
   max-height: 90%;
 }

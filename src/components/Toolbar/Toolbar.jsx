@@ -9,11 +9,12 @@ const Toolbar = ({ children, location }) => {
   return (
     <div className="toolbar">
       <Link to="/garden">
-        <button className="btn" disabled={path === '/garden'}>My Garden</button>
+        <button className="toolbar__tab toolbar__tab--first" disabled={path === '/garden'}>My Garden</button>
       </Link>
       <Link to="/plant">
-        <button className="btn" disabled={path === '/plant'}>Plant Explorer</button>
+        <button className="toolbar__tab" disabled={path === '/plant'}>Plant Explorer</button>
       </Link>
+      <div className="toolbar__filler"></div>
       {children}
     </div>
   );
