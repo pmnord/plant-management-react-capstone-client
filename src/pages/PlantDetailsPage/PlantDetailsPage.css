@@ -14,12 +14,16 @@
   width: 50%;
 }
 
-.plant-details img {
+.plant-details__img {
   height: 7em;
   max-width: 157px;
   border: solid 1px var(--black);
   border-radius: 5px;
   margin: 0.2em;
+}
+
+.plant-details__img:hover {
+  cursor: pointer;
 }
 
 .plant-details h2 {
@@ -56,6 +60,12 @@
   font-size: 0.8em;
 }
 
+.plant-details__loading {
+  font-size: 2rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
 @media screen and (min-device-width: 813px) {
   .plant-details__images {
     display: flex;
@@ -65,7 +75,7 @@
     justify-content: flex-end;
   }
 
-  .plant-details img {
+  .plant-details__img {
     height: 14em;
     max-width: none;
     border: solid 1px var(--black);

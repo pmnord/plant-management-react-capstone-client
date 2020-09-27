@@ -1,0 +1,25 @@
+.ModalImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    hsla(0, 0%, 0%, 40%) 30%,
+    hsla(0, 0%, 0%, 40%) 70%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ModalImage:hover {
+  cursor: pointer;
+}
+
+.ModalImage__img {
+  border: solid 2px black;
+  margin-bottom: 10rem;
+  max-width: 90%;
+  max-height: 90%;
+}
