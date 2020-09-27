@@ -19,6 +19,10 @@ export default function PlantSearchListItem(props) {
         trefle_id: props.trefle_id,
         scientific_name: props.scientific_name,
         common_name: props.common_name,
+        image: props.image_url,
+        family: props.family,
+        family_common_name: props.family_common_name,
+        genus: props.genus,
       }),
     })
       .then((res) =>
