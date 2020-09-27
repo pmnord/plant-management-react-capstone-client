@@ -1,0 +1,27 @@
+.plant-search__disclaimer {
+  text-align: center;
+}
+
+.plant-search ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.plant-search a {
+  text-decoration: none;
+}
+
+.plant-search {
+  width: 100%;
+}
+
+.plant-search form {
+  text-align: center;
+}
+
+.plant-search__input {
+  width: 40%;
+  height: 2.2em;
+  border-radius: 5px;
+}

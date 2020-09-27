@@ -1,0 +1,19 @@
+.footer {
+  font-size: 0.8em;
+  width: 100%;
+  text-align: center;
+
+}
+
+.footer p {
+  margin: 1rem;
+}
+
+.footer a {
+  color: hsl(120, 20%, 42%);
+}
+
+.footer__source-svg {
+  padding-right: 0.5rem;
+  color: hsl(120, 20%, 42%);
+}

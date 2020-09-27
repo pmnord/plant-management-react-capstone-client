@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Sacramento|Oswald&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Sacramento|Oswald&display=swap");
 
 :root {
   --black: rgba(0, 0, 0, 0.87);
@@ -6,52 +6,11 @@
 
 body {
   margin: 0;
-  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-button {
-  margin: 0.5em;
-  padding: 0.5em 1em;
-  border-radius: 6px;
-  border: none;
-  box-shadow: 1px 1px 2px var(--black);
-  background-color: white;
-  background: linear-gradient(
-    to bottom,
-    hsl(0, 0%, 100%) 30%,
-    hsl(0, 0%, 90%) 70%
-  );
-  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  font-weight: bold;
-}
-button:hover {
-  background: linear-gradient(
-    to bottom,
-    hsl(0, 0%, 90%) 30%,
-    hsl(0, 0%, 100%) 70%
-  );
-  cursor: pointer;
-}
-button[disabled] {
-  cursor: default;
-  background: linear-gradient(
-    to bottom,
-    hsl(0, 0%, 100%) 30%,
-    hsl(0, 0%, 90%) 70%
-  );
-}
-
-input {
-  border: none;
-  border: solid 1px var(--black);
-  padding: 0.2rem 0.3rem;
-  border-radius: 6px;
 }
 
 .hidden {
@@ -62,43 +21,56 @@ input {
   display: none;
 }
 
-.header a {
-  text-decoration: none;
-  color: var(--black);
+.btn {
+  margin: 0.5rem;
+  padding: 0.4rem 1.2rem;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 1px 1px 2px var(--black);
+  background-color: white;
+  background: linear-gradient(
+    to bottom,
+    hsl(0, 0%, 100%) 30%,
+    hsl(0, 0%, 90%) 70%
+  );
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
 }
 
-.header h1 {
-  font-family: 'Sacramento';
-  font-size: 2rem;
-  margin: 0;
-  margin-left: 0.5rem;
+.btn:hover {
+  background: linear-gradient(
+    to bottom,
+    hsl(0, 0%, 90%) 30%,
+    hsl(0, 0%, 100%) 70%
+  );
+  cursor: pointer;
 }
 
-.header__nav {
-  max-width: 1000px;
-  margin: 1rem auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.btn[disabled] {
+  cursor: default;
+  background: linear-gradient(
+    to bottom,
+    hsl(0, 0%, 100%) 30%,
+    hsl(0, 0%, 90%) 70%
+  );
 }
 
-.footer {
-  font-size: 0.8em;
-  width: 100%;
-  text-align: center;
+label {
+  font-size: 0.9rem;
+  display: block;
+  color: #444;
 }
 
-.footer p {
-  margin: 1rem;
-}
-
-.footer a {
-  color: hsl(120, 20%, 42%);
-}
-
-.footer__source svg {
-  padding-right: 0.5rem;
-  color: hsl(120, 20%, 42%);
+input {
+  border: none;
+  border: solid 1px var(--black);
+  padding: 0.2rem 0.3rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
 }
 
 .app {
@@ -114,11 +86,7 @@ input {
   max-width: 1000px;
 }
 
-.flex {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
+
 
 .clickable:hover {
   cursor: pointer;
@@ -129,231 +97,6 @@ input {
   height: 1.5em;
 }
 
-.HomeRoute {
-  max-width: 1000px;
-  display: flex;
-  flex-direction: column;
-  background-image: url('./assets/kendal-TW2bfT_tWDI-unsplash.jpg');
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-.HomeRoute__form {
-  display: flex;
-  flex-direction: column;
-}
-
-.HomeRoute__pitch {
-  width: 100%;
-  height: auto;
-  margin: 0;
-  background-color: hsla(0, 0%, 100%, 0.9);
-}
-
-.HomeRoute__pitch p {
-  margin: 0.5em;
-  font-size: 1.2em;
-}
-
-.HomeRoute__authentication .login {
-  display: none;
-}
-
-.registration__form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 0.5em;
-  background-color: hsla(0, 0%, 100%, 0.9);
-}
-
-.registration__form label,
-.login label {
-  display: block;
-  color: #444;
-}
-
-.login {
-  padding: 0 0.5em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 15em;
-  background-color: hsla(0, 0%, 95%, 0.92);
-  border-radius: 3px;
-}
-
-.LoginRoute {
-  margin-top: 2em;
-}
-
-.plant-grid {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-}
-
-.plant-card {
-  background-color: #eee;
-  width: 16em;
-  /* height: 22em; */
-  padding: 1em;
-  margin: 1em;
-  padding-top: 0.1em;
-
-  border-radius: 12px;
-  box-shadow: 5px 5px 5px var(--black);
-}
-
-.plant-card * {
-  margin: 0;
-}
-
-.plant-card button {
-  margin: 0.5em;
-  padding: 0.2em;
-}
-
-.plant-card__watered {
-  display: flex;
-  align-items: center;
-}
-
-.plant-card__water-button {
-  margin: 0.2em !important;
-  padding: 0em !important;
-  height: 1.7em;
-  width: 1.7em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.plant-card__water-button:hover {
-  background-color: white;
-}
-.plant-card__water-button:focus {
-  outline: none;
-}
-
-.plant-card textarea {
-  width: 100%;
-  height: 4em;
-}
-
-.plant-card img {
-  height: 10em;
-}
-
-.plant-card__header {
-  text-align: center;
-}
-
-.plant-card__header {
-  text-transform: capitalize;
-}
-
-iframe {
-  width: 60em;
-  height: 15em;
-}
-
-.garden {
-  width: 100%;
-}
-
-.garden-filter {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  font-size: 1.3rem;
-  margin: 1rem 0;
-}
-
-.garden-filter__input {
-  height: 1.3rem;
-  border-radius: 5px;
-  margin-left: 0.5rem;
-}
-
-.plant-search__disclaimer {
-  text-align: center;
-}
-
-.plant-search ul {
-  list-style: none;
-  padding: 0;
-  width: 100%;
-}
-
-.plant-search a {
-  text-decoration: none;
-}
-
-.plant-search {
-  width: 100%;
-}
-
-.plant-search form {
-  text-align: center;
-}
-
-.plant-search__input {
-  width: 40%;
-  height: 2.2em;
-  border-radius: 5px;
-}
-
-.plant-details {
-  width: 100%;
-}
-
-.plant-details__innerdiv {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.plant-details__images {
-  margin-right: 0.5em;
-  text-align: right;
-  width: 50%;
-}
-
-.plant-details img {
-  height: 7em;
-  max-width: 157px;
-  border: solid 1px var(--black);
-  border-radius: 5px;
-  margin: 0.2em;
-}
-
-.plant-details h2 {
-  font-size: 0.8em;
-  width: fit-content;
-  margin: 0 auto;
-  margin-bottom: 0.5em;
-  padding: 0.2em;
-  border-radius: 2px;
-  text-align: center;
-  background-color: hsl(73, 60%, 88%);
-}
-
-.plant-details__details {
-  text-align: left;
-}
-
-.plant-details__raw-data-button {
-  padding: 0.2em;
-  font-size: 0.8em;
-}
-
-.demo-banner {
-  margin: 0;
-}
-
 @media screen and (max-width: 1120px) {
   .garden-filter__input {
     width: 20em;
@@ -361,10 +104,6 @@ iframe {
 }
 
 @media screen and (min-width: 1121px) {
-  .garden-filter__input {
-    width: 20rem;
-  }
-
   .mobile-hidden {
     display: inline;
   }
@@ -378,55 +117,5 @@ iframe {
     width: 80%;
     margin: 0 auto;
     max-width: 1000px;
-  }
-
-  .HomeRoute__authentication {
-    width: 18em;
-  }
-
-  .HomeRoute__authentication .login {
-    display: flex;
-  }
-
-  .HomeRoute {
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 2em;
-  }
-
-  .HomeRoute__pitch {
-    width: 50%;
-    margin-right: 2em;
-    background-color: hsla(0, 0%, 100%, 0.9);
-    border-radius: 3px;
-    height: 233px;
-    box-sizing: border-box;
-  }
-
-  .registration__form {
-    border-radius: 3px;
-    margin-bottom: 1rem;
-    height: 233px;
-  }
-
-  .login {
-    background-color: hsla(0, 0%, 100%, 0.9);
-  }
-
-  .plant-details__images {
-    display: flex;
-    flex-wrap: wrap;
-    width: 40%;
-    margin-right: 2em;
-    justify-content: flex-end;
-  }
-
-  .plant-details img {
-    height: 14em;
-    max-width: none;
-    border: solid 1px var(--black);
-    border-radius: 5px;
-    margin: 0.2em;
   }
 }

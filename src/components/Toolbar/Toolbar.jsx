@@ -9,10 +9,10 @@ const Toolbar = ({ children, location }) => {
   return (
     <div className="toolbar">
       <Link to="/garden">
-        <button disabled={path === '/garden'}>My Garden</button>
+        <button className="btn" disabled={path === '/garden'}>My Garden</button>
       </Link>
       <Link to="/plant">
-        <button disabled={path === '/plant'}>Plant Explorer</button>
+        <button className="btn" disabled={path === '/plant'}>Plant Explorer</button>
       </Link>
       {children}
     </div>

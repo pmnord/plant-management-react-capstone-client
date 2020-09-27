@@ -2,6 +2,8 @@ import React from 'react';
 import config from '../../config';
 import TokenService from '../../services/tokenService';
 
+import './LoginForm.css';
+
 // Handles log in functionality
 export default class LoginForm extends React.Component {
   constructor(props) {
@@ -61,7 +63,7 @@ export default class LoginForm extends React.Component {
           <label htmlFor='password'>Password</label>
           <input type='password' name='password' required />
         </div>
-        <button disabled={this.state.submitting}>
+        <button className="btn" disabled={this.state.submitting}>
           {this.state.submitting ? 'Loading...' : 'Submit'}
         </button>
         <div className='error'>{this.state.error}</div>

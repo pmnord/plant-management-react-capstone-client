@@ -1,8 +1,11 @@
 import React from "react";
-import PlantCard from "../components/PlantCard/PlantCard";
-import ApiService from "../services/apiService";
+import ApiService from "../../services/apiService";
 import moment from "moment";
-import Toolbar from "../components/Toolbar/Toolbar";
+
+import './GardenPage.css';
+
+import PlantCard from "../../components/PlantCard/PlantCard";
+import Toolbar from "../../components/Toolbar/Toolbar";
 
 // The Garden page renders a grid of a user's plants and provides ways to interact with those plants
 // It represents the current state of a user's plant collection in the database

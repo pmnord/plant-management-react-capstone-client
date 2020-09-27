@@ -1,8 +1,11 @@
 import React from 'react';
-import config from '../config';
-import TokenService from '../services/tokenService';
+import config from '../../config';
+import TokenService from '../../services/tokenService';
 import xss from 'xss';
-import Toolbar from '../components/Toolbar/Toolbar';
+
+import './PlantDetailsPage.css';
+
+import Toolbar from '../../components/Toolbar/Toolbar';
 
 /* Provides images and data about a specific plant from the Trefle API.
 
@@ -182,13 +185,13 @@ export default class PlantDetails extends React.Component {
             ) : null}
 
             {!this.state.loading && (
-              <button onClick={this.handleAddPlant}>Add to Garden</button>
+              <button className="btn" onClick={this.handleAddPlant}>Add to Garden</button>
             )}
           </div>
         </div>
         {!this.state.loading && (
           <button
-            className='plant-details__raw-data-button'
+            className='btn plant-details__raw-data-button'
             onClick={this.toggleRawData}
           >
             View Raw Data

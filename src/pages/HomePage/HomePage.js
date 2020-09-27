@@ -1,6 +1,9 @@
 import React from 'react';
-import RegistrationForm from '../components/RegistrationForm/RegistrationForm';
-import LoginForm from '../components/LoginForm/LoginForm';
+
+import './HomePage.css';
+
+import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
+import LoginForm from '../../components/LoginForm/LoginForm';
 
 // Homepage consisting of the pitch, the Registration component and Login component
 export default function HomeRoute(props) {

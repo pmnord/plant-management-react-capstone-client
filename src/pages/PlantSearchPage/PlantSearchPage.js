@@ -1,7 +1,10 @@
 import React from 'react';
-import PlantSearchListItem from '../components/PlantSearchListItem/PlantSearchListItem';
-import Toolbar from '../components/Toolbar/Toolbar';
-import ApiService from '../services/apiService';
+import ApiService from '../../services/apiService';
+
+import './PlantSearchPage.css';
+
+import PlantSearchListItem from '../../components/PlantSearchListItem/PlantSearchListItem';
+import Toolbar from '../../components/Toolbar/Toolbar';
 
 // Provides a search form to look up plants in the Trefle API database.
 // Searches based on both scientific_name and common_name
@@ -52,7 +55,7 @@ export default class PlantSearchRoute extends React.Component {
             type='text'
             placeholder='Search by Scientific Name or Common Name'
           />
-          <button>Search</button>
+          <button className="btn">Search</button>
         </form>
         {this.state.loading && <h3>Loading results...</h3>}
         <p className='error'>{this.state.error ? this.state.error : null}</p>

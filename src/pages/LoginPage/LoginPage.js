@@ -1,5 +1,8 @@
 import React from 'react';
-import LoginForm from '../components/LoginForm/LoginForm';
+
+import './LoginPage.css'
+
+import LoginForm from '../../components/LoginForm/LoginForm';
 
 // Simple page consisting of the Login component
 // Mainly used to redirect users to when they do not have a valid token

@@ -51,14 +51,14 @@ export default function PlantSearchListItem(props) {
       </div>
       <div className='plant-search__list-item__buttons'>
         <Link to={`/plant/${props.trefle_id}`}>
-          <button>See Details</button>
+          <button className="btn">See Details</button>
         </Link>
         {props.complete_data ? (
           <Link to={`/plant/${props.trefle_id}`}>
-            <button>See Details</button>
+            <button className="btn">See Details</button>
           </Link>
         ) : null}
-        <button onClick={handleAddPlant}>Add to Garden</button>
+        <button className="btn" onClick={handleAddPlant}>Add to Garden</button>
       </div>
     </li>
   );

@@ -3,15 +3,15 @@ import { Switch } from 'react-router-dom';
 
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import PlantSearchRoute from './routes/PlantSearchRoute';
-import PlantDetailsRoute from './routes/PlantDetailsRoute';
-import GardenRoute from './routes/GardenRoute';
-import LoginRoute from './routes/LoginRoute';
-import HomeRoute from './routes/HomeRoute';
+import PlantSearchPage from './pages/PlantSearchPage/PlantSearchPage';
+import PlantDetailsPage from './pages/PlantDetailsPage/PlantDetailsPage';
+import GardenPage from './pages/GardenPage/GardenPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import HomePage from './pages/HomePage/HomePage';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
-import PrivateRoute from './routes/utils/PrivateRoute';
-import PublicOnlyRoute from './routes/utils/PublicOnlyRoute';
+import PrivateRoute from './routes/PrivateRoute';
+import PublicOnlyRoute from './routes/PublicOnlyRoute';
 import TokenService from './services/tokenService';
 
 class App extends React.Component {
@@ -42,7 +42,7 @@ class App extends React.Component {
                 exact
                 path={'/'}
                 component={(router) => (
-                  <HomeRoute
+                  <HomePage
                     updateLoggedIn={this.updateLoggedIn}
                     router={router}
                   />
@@ -52,7 +52,7 @@ class App extends React.Component {
                 exact
                 path={'/login'}
                 component={(router) => (
-                  <LoginRoute
+                  <LoginPage
                     updateLoggedIn={this.updateLoggedIn}
                     router={router}
                   />
@@ -60,16 +60,16 @@ class App extends React.Component {
               />
               <PrivateRoute
                 path={'/garden'}
-                component={(router) => <GardenRoute router={router} />}
+                component={(router) => <GardenPage router={router} />}
               />
               <PrivateRoute
                 exact
                 path={'/plant'}
-                component={PlantSearchRoute}
+                component={PlantSearchPage}
               />
               <PrivateRoute
                 path={'/plant/:plant_id'}
-                component={(router) => <PlantDetailsRoute router={router} />}
+                component={(router) => <PlantDetailsPage router={router} />}
               />
             </Switch>
           </ErrorBoundary>

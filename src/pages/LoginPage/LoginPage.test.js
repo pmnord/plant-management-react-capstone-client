@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import HomeRoute from './HomeRoute';
+import LoginRoute from './LoginPage';
 
-it('Renders the HomeRoute component', () => {
+it('Renders the LoginRoute component', () => {
     const div = document.createElement('div');
 
     ReactDOM.render(
         <BrowserRouter>
-            <HomeRoute />
+            <LoginRoute />
         </BrowserRouter>
         , div);
 

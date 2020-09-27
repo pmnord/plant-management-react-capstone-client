@@ -1,0 +1,15 @@
+.login {
+  padding: 0 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 15em;
+  background-color: hsla(0, 0%, 100%, 0.9);
+  border-radius: 3px;
+}
+
+@media screen and (min-device-width: 813px) {
+  .login {
+    background-color: hsla(0, 0%, 100%, 0.95);
+  }
+}

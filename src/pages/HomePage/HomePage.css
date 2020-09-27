@@ -1,0 +1,60 @@
+.HomeRoute {
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  background-image: url('../../assets/kendal-TW2bfT_tWDI-unsplash.jpg');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.HomeRoute__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.HomeRoute__pitch {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  background-color: hsla(0, 0%, 100%, 0.9);
+}
+
+.HomeRoute__pitch p {
+  margin: 0.5em;
+  font-size: 1.2em;
+}
+
+.HomeRoute__authentication .login {
+  display: none;
+}
+
+
+@media screen and (min-device-width: 813px) {
+
+  .HomeRoute__authentication {
+    width: 18em;
+  }
+
+  .HomeRoute__authentication .login {
+    display: flex;
+  }
+
+  .HomeRoute {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2em;
+  }
+
+  .HomeRoute__pitch {
+    width: 50%;
+    margin-right: 2em;
+    background-color: hsla(0, 0%, 100%, 0.95);
+    border-radius: 3px;
+    height: 233px;
+    box-sizing: border-box;
+  }
+}

@@ -1,5 +1,8 @@
 import React from 'react';
 import config from '../../config';
+
+import './RegistrationForm.css';
+
 import TokenService from '../../services/tokenService';
 import Tooltip from '../Tooltip/Tooltip';
 
@@ -110,7 +113,7 @@ export default class RegistrationForm extends React.Component {
         <div>
           <label htmlFor='password'>
             Password
-            <Tooltip content='Passwords are end-to-end encrypted and never visible to FancyPlants'>
+            <Tooltip content='Passwords are stored encrypted and never visible to FancyPlants'>
               <span role='img' aria-label='password tooltip'>
                 💬
               </span>
@@ -127,7 +130,7 @@ export default class RegistrationForm extends React.Component {
             }
           />
         </div>
-        <button disabled={this.state.submitting}>
+        <button className="btn" disabled={this.state.submitting}>
           {this.state.submitting ? 'Loading...' : 'Register'}
         </button>
         <div className='error'>{this.state.error}</div>

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Router } from 'react-router-dom';
 
-import PlantDetailsRoute from './PlantDetailsRoute';
+import PlantDetailsRoute from './PlantDetailsPage';
 
 it('Renders the PlantDetailsRoute component', () => {
     const div = document.createElement('div');

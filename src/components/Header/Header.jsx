@@ -14,7 +14,7 @@ const Header = (props) => {
     return (
       <div>
         <Link to='/login'>
-          <button>Log In</button>
+          <button className="btn">Log In</button>
         </Link>
       </div>
     );
@@ -24,7 +24,7 @@ const Header = (props) => {
     return (
       <div>
         <Link to='/'>
-          <button onClick={handleLogoutclick}>Log Out</button>
+          <button className="btn" onClick={handleLogoutclick}>Log Out</button>
         </Link>
       </div>
     );
