@@ -18,7 +18,7 @@ const ApiService = {
       .then((data) => data);
   },
   addUserPlant(plant) {},
-  updateUserPlant(userPlantId, updateValues) {
+  updatePlantInstance(userPlantId, updateValues) {
     return fetch(`${config.API_ENDPOINT}/garden/${userPlantId}`, {
       method: 'PATCH',
       headers: {

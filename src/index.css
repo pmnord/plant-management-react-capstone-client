@@ -86,8 +86,6 @@ input {
   max-width: 1000px;
 }
 
-
-
 .clickable:hover {
   cursor: pointer;
 }
@@ -95,12 +93,6 @@ input {
 .error {
   color: red;
   height: 1.5em;
-}
-
-@media screen and (max-width: 1120px) {
-  .garden-filter__input {
-    width: 20em;
-  }
 }
 
 @media screen and (min-width: 1121px) {

@@ -36,6 +36,7 @@ export default class PlantDetails extends React.Component {
         !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
       )
       .then((data) => {
+        console.log(data)
         const details = {
           scientific_name: data.scientific_name,
           common_name:
@@ -168,10 +169,12 @@ export default class PlantDetails extends React.Component {
           <div className='plant-details__details'>
             {Object.entries(this.state.details).map((detail, idx) =>
               detail[1] ? (
-                <p key={idx}>
-                  <strong>{this.labelize(detail[0])}: </strong>
-                  {detail[1]}
-                </p>
+                <div className='detail' key={idx}>
+                  <p className='detail__label'>{this.labelize(detail[0])}</p>
+                  <p className='detail__content'>
+                    {detail[1]}
+                  </p>
+                </div>
               ) : null
             )}
             {false && this.state.details.genus ? (
