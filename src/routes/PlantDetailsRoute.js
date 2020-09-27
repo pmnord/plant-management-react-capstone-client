@@ -171,7 +171,7 @@ export default class PlantDetails extends React.Component {
                 </p>
               ) : null
             )}
-            {this.state.details.genus ? (
+            {false && this.state.details.genus ? (
               <a
                 rel='noopener noreferrer'
                 target='_blank'
@@ -182,7 +182,7 @@ export default class PlantDetails extends React.Component {
             ) : null}
 
             {!this.state.loading && (
-              <button onClick={this.handleAddPlant}>Add to My Garden</button>
+              <button onClick={this.handleAddPlant}>Add to Garden</button>
             )}
           </div>
         </div>
@@ -191,7 +191,7 @@ export default class PlantDetails extends React.Component {
             className='plant-details__raw-data-button'
             onClick={this.toggleRawData}
           >
-            Raw Data
+            View Raw Data
           </button>
         )}
         {this.state.raw_data && (

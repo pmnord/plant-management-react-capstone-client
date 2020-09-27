@@ -19,18 +19,22 @@ class App extends React.Component {
     super(props);
     this.state = {
       loggedIn: TokenService.hasToken(),
+      username: null,
     };
   }
 
   // Keeps the Header component in sync with whether the user is logged in or not for conditional rendering purposes
-  updateLoggedIn = () => {
-    this.setState({ loggedIn: TokenService.hasToken() });
+  updateLoggedIn = (username) => {
+    this.setState({ loggedIn: TokenService.hasToken(), username });
   };
 
   render() {
     return (
       <div className='app'>
-        <Header handleLogout={this.updateLoggedIn} />
+        <Header
+          username={this.state.username}
+          handleLogout={this.updateLoggedIn}
+        />
         <main className='main'>
           <ErrorBoundary>
             <Switch>

@@ -1,6 +1,6 @@
-import React from "react";
-import config from "../../config";
-import TokenService from "../../services/tokenService";
+import React from 'react';
+import config from '../../config';
+import TokenService from '../../services/tokenService';
 
 // Handles log in functionality
 export default class LoginForm extends React.Component {
@@ -20,14 +20,14 @@ export default class LoginForm extends React.Component {
     const username = e.target.username.value;
     const password = e.target.password.value;
 
-    e.target.username.value = "";
-    e.target.password.value = "";
+    e.target.username.value = '';
+    e.target.password.value = '';
 
     fetch(`${config.API_ENDPOINT}/auth/login`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "content-type": "application/json",
-        "api-key": config.API_KEY,
+        'content-type': 'application/json',
+        'api-key': config.API_KEY,
       },
       body: JSON.stringify({ username, password }),
     })
@@ -37,36 +37,39 @@ export default class LoginForm extends React.Component {
       })
       .then((res) => {
         TokenService.setToken(res.authToken); // The server provides a JWT auth token
-        this.props.updateLoggedIn(); // Sets LoggedIn on the parent component state
+        this.props.updateLoggedIn(username);
         this.props.router.history.push(`/garden`);
       })
       .catch((err) => {
-        this.setState({ error: err.error || 'Unable to log in at this time', submitting: false });
+        this.setState({
+          error: err.error || 'Unable to log in at this time',
+          submitting: false,
+        });
       });
   };
 
   render() {
     return (
-      <form className="login" onSubmit={this.handleLoginSubmit}>
+      <form className='login' onSubmit={this.handleLoginSubmit}>
         <h2>Log In</h2>
         <div>
-          <label htmlFor="username">Username</label>
-          <input type="text" name="username" required />
+          <label htmlFor='username'>Username</label>
+          <input type='text' name='username' required />
         </div>
 
         <div>
-          <label htmlFor="password">Password</label>
-          <input type="password" name="password" required />
+          <label htmlFor='password'>Password</label>
+          <input type='password' name='password' required />
         </div>
         <button disabled={this.state.submitting}>
-          {this.state.submitting ? "Loading..." : "Submit"}
+          {this.state.submitting ? 'Loading...' : 'Submit'}
         </button>
-        <div className="error">{this.state.error}</div>
+        <div className='error'>{this.state.error}</div>
         <p
           style={{
-            fontSize: "0.8rem",
-            color: " hsla(0, 0%, 40%)",
-            textAlign: "center",
+            fontSize: '0.8rem',
+            color: ' hsla(0, 0%, 40%)',
+            textAlign: 'center',
           }}
         >
           * To demo the app, use the credentials: demo/password
