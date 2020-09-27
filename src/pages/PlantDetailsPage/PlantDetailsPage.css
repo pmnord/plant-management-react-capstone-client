@@ -66,7 +66,7 @@
   text-align: center;
 }
 
-@media screen and (min-device-width: 813px) {
+@media screen and (min-device-width: 814px) {
   .plant-details__images {
     display: flex;
     flex-wrap: wrap;
@@ -81,5 +81,16 @@
     border: solid 1px var(--black);
     border-radius: 5px;
     margin: 0.2em;
+  }
+}
+
+@media screen and (max-width: 813px) {
+  .plant-details__innerdiv {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plant-details__raw-data-button {
+    margin-top: 2rem;
   }
 }

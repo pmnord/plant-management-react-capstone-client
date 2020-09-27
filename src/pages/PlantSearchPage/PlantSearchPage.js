@@ -1,10 +1,10 @@
-import React from 'react';
-import ApiService from '../../services/apiService';
+import React from "react";
+import ApiService from "../../services/apiService";
 
-import './PlantSearchPage.css';
+import "./PlantSearchPage.css";
 
-import PlantSearchListItem from '../../components/PlantSearchListItem/PlantSearchListItem';
-import Toolbar from '../../components/Toolbar/Toolbar';
+import PlantSearchListItem from "../../components/PlantSearchListItem/PlantSearchListItem";
+import Toolbar from "../../components/Toolbar/Toolbar";
 
 // Provides a search form to look up plants in the Trefle API database.
 // Searches based on both scientific_name and common_name
@@ -35,33 +35,34 @@ export default class PlantSearchRoute extends React.Component {
 
   render() {
     return (
-      <section className='plant-search'>
+      <section className="plant-search">
         <Toolbar></Toolbar>
-        <h2 className='hidden'>Plant Explorer</h2>
+        <h2 className="hidden">Plant Explorer</h2>
         <div>
-          <h3 className='plant-search__disclaimer'>
-            Search every plant in the world (almost) with the Trefle API
+          <h3 className="plant-search__disclaimer">
+            Search every plant in the world (almost)!
           </h3>
         </div>
 
-        <form onSubmit={this.handleSearchSubmit}>
-          <label htmlFor='plant_search_input' className='hidden'>
-            Plant Name
-          </label>
-          <input
-            className='plant-search__input'
-            name='plant_search'
-            id='plant_search_input'
-            type='text'
-            placeholder='Search by Scientific Name or Common Name'
-          />
+        <form className="plant-search__form" onSubmit={this.handleSearchSubmit}>
+          <div>
+            <label htmlFor="plant_search_input" className="plant-search__label">
+              Plant Name
+            </label>
+            <input
+              className="plant-search__input"
+              name="plant_search"
+              id="plant_search_input"
+              type="text"
+            />
+          </div>
           <button className="btn">Search</button>
         </form>
         {this.state.loading && <h3>Loading results...</h3>}
-        <p className='error'>{this.state.error ? this.state.error : null}</p>
+        <p className="error">{this.state.error ? this.state.error : null}</p>
 
         {/* Search results populated as components in an unordered list */}
-        <ul className='plant-search__search-results'>
+        <ul className="plant-search__search-results">
           {this.state.searchResults.map((plant) => {
             return (
               <PlantSearchListItem

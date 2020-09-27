@@ -56,12 +56,12 @@ export default class LoginForm extends React.Component {
         <h2>Log In</h2>
         <div>
           <label htmlFor='username'>Username</label>
-          <input type='text' name='username' required />
+          <input className="basic-input" type='text' name='username' required />
         </div>
 
         <div>
           <label htmlFor='password'>Password</label>
-          <input type='password' name='password' required />
+          <input className="basic-input" type='password' name='password' required />
         </div>
         <button className="btn" disabled={this.state.submitting}>
           {this.state.submitting ? 'Loading...' : 'Submit'}

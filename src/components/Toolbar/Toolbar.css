@@ -46,3 +46,9 @@
     border-bottom: solid 1px var(--lightgray);
     width: 50%;
 }
+
+@media screen and (max-width: 813px) {
+  .toolbar__tab {
+      font-size: 1rem;
+  }
+}

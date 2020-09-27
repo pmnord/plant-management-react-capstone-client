@@ -16,12 +16,26 @@
   width: 100%;
 }
 
-.plant-search form {
-  text-align: center;
+.plant-search__form {
+  margin: 0 auto;
+  max-width: 30rem;
+  display: flex;
+  align-items: flex-end;
 }
 
 .plant-search__input {
-  width: 40%;
-  height: 2.2em;
+  font-size: 1.4rem;
   border-radius: 5px;
+  width: 100%;
+  padding: 0.2rem;
+  margin-bottom: 0.4rem;
+  margin-right: 1rem;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 813px) {
+  .plant-search__disclaimer {
+    font-size: 1rem;
+    text-align: left;
+  }
 }

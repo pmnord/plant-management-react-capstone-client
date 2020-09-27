@@ -101,6 +101,7 @@ export default class RegistrationForm extends React.Component {
         <div>
           <label htmlFor='username'>Username</label>
           <input
+          className="basic-input"
             type='text'
             name='username'
             required
@@ -120,6 +121,7 @@ export default class RegistrationForm extends React.Component {
             </Tooltip>
           </label>
           <input
+          className="basic-input"
             type='password'
             name='password'
             minLength='6'
