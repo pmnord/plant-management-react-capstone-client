@@ -1,12 +1,12 @@
-import React from "react";
-import config from "../../config";
-import TokenService from "../../services/tokenService";
-import xss from "xss";
+import React from 'react';
+import config from '../../config';
+import TokenService from '../../services/tokenService';
+import xss from 'xss';
 
-import "./PlantDetailsPage.css";
+import './PlantDetailsPage.css';
 
-import Toolbar from "../../components/Toolbar/Toolbar";
-import ModalImage from "../../components/ModalImage/ModalImage";
+import Toolbar from '../../components/Toolbar/Toolbar';
+import ModalImage from '../../components/ModalImage/ModalImage';
 
 /* Provides images and data about a specific plant from the Trefle API.
 
@@ -24,6 +24,8 @@ export default class PlantDetails extends React.Component {
       loading: true,
       modal_src: null,
       modal_alt: null,
+      main_species: {},
+      main_species_images: {},
     };
   }
 
@@ -32,13 +34,14 @@ export default class PlantDetails extends React.Component {
 
     fetch(`${config.API_ENDPOINT}/plant/${trefle_id}`, {
       headers: {
-        "api-key": config.API_KEY,
+        'api-key': config.API_KEY,
       },
     })
       .then((res) =>
         !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
       )
       .then((data) => {
+        console.log(data);
         const details = {
           scientific_name: data.scientific_name,
           common_name:
@@ -61,6 +64,8 @@ export default class PlantDetails extends React.Component {
           plant: data,
           complete_data: data.main_species.complete_data,
           loading: false,
+          main_species: data.main_species,
+          main_species_images: data.main_species.images,
         });
       })
       .catch((res) => this.setState({ error: res.error }));
@@ -69,9 +74,9 @@ export default class PlantDetails extends React.Component {
   labelize(str) {
     // Uppercase the first char of every word
     return str
-      .split("_")
+      .split('_')
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
+      .join(' ');
   }
 
   handleAddPlant = () => {
@@ -107,10 +112,10 @@ export default class PlantDetails extends React.Component {
     };
 
     return fetch(`${config.API_ENDPOINT}/garden`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "content-type": "application/json",
-        "api-key": config.API_KEY,
+        'content-type': 'application/json',
+        'api-key': config.API_KEY,
         Authorization: `Bearer ${TokenService.getToken()}`,
       },
       body: JSON.stringify(plantToAdd),
@@ -118,17 +123,17 @@ export default class PlantDetails extends React.Component {
       .then((res) =>
         !res.ok
           ? res.json().then((e) => Promise.reject(e))
-          : this.props.router.history.push("/garden")
+          : this.props.router.history.push('/garden')
       )
       .catch((res) => console.log(res.error));
   };
 
   recurseDataIntoLists(data) {
     // For displaying raw data, recursively create <ul> and <li> elements
-    let listItems = "";
+    let listItems = '';
 
     for (let el in data) {
-      if (typeof data[el] === "object") {
+      if (typeof data[el] === 'object') {
         listItems += `<li>${el}: ${this.recurseDataIntoLists(data[el])}</li>`;
       } else {
         listItems += `<li>${el}: ${data[el]}</li>`;
@@ -144,7 +149,7 @@ export default class PlantDetails extends React.Component {
 
   render() {
     return (
-      <div className="plant-details">
+      <div className='plant-details'>
         {this.state.modal_src && (
           <ModalImage
             src={this.state.modal_src}
@@ -156,22 +161,17 @@ export default class PlantDetails extends React.Component {
         )}
         <Toolbar></Toolbar>
         {!this.state.error && this.state.loading && (
-          <h3 className="plant-details__loading">Fetching your plant...</h3>
+          <h3 className='plant-details__loading'>Fetching your plant...</h3>
         )}
-        {this.state.complete_data === false ? (
-          <h2>
-            The data for this plant is tagged <strong>'incomplete'</strong> in
-            the Trefle.io database and may have limited information.
-          </h2>
-        ) : null}
 
-        <div className="plant-details__innerdiv">
-          <div className="plant-details__images">
-            {this.state.images &&
+        <div className='plant-details__innerdiv'>
+          <div className='plant-details__images'>
+            {/* Old, non-programmatic image display */}
+            {/* {this.state.images &&
               this.state.images.map((image, idx) => (
                 <img
                   key={idx}
-                  className="plant-details__img"
+                  className='plant-details__img'
                   src={image}
                   alt={`${this.state.details.scientific_name}`}
                   onClick={() => {
@@ -181,48 +181,97 @@ export default class PlantDetails extends React.Component {
                     });
                   }}
                 />
-              ))}
+              ))} */}
+
+            {Object.entries(this.state.main_species_images).map(
+              (imageEntry) => {
+                if (imageEntry[1].length > 0) {
+                  return (
+                    <div>
+                      <h3>{this.labelize(imageEntry[0])}</h3>
+
+                      {imageEntry[1] &&
+                        imageEntry[1].map((image, idx) => (
+                          <img
+                            key={idx}
+                            className='plant-details__img'
+                            src={image.image_url}
+                            alt={`${this.state.details.scientific_name}`}
+                            title={image.copyright}
+                            onClick={() => {
+                              this.setState({
+                                modal_src: image.image_url,
+                                modal_alt: this.state.details.scientific_name,
+                              });
+                            }}
+                          />
+                        ))}
+                    </div>
+                  );
+                }
+              }
+            )}
           </div>
-          <div className="plant-details__details">
-            {Object.entries(this.state.details).map((detail, idx) =>
+          <div className='plant-details__details'>
+            {/* Old, non-programmatic way I was displaying details */}
+            {/* {Object.entries(this.state.details).map((detail, idx) =>
               detail[1] ? (
-                <div className="detail" key={idx}>
-                  <p className="detail__label">{this.labelize(detail[0])}</p>
-                  <p className="detail__content">{detail[1]}</p>
+                <div className='detail' key={idx}>
+                  <p className='detail__label'>{this.labelize(detail[0])}</p>
+                  <p className='detail__content'>{detail[1]}</p>
                 </div>
               ) : null
-            )}
-            {false && this.state.details.genus ? (
-              <a
-                rel="noopener noreferrer"
-                target="_blank"
-                href={`https://en.wikipedia.org/wiki/${this.state.details.genus}`}
-              >
-                <p>Wikipedia</p>
-              </a>
-            ) : null}
+            )} */}
 
             {!this.state.loading && (
-              <button className="btn" onClick={this.handleAddPlant}>
-                Add to Garden
+              <button className='btn' onClick={this.handleAddPlant}>
+                Add to My Collection
               </button>
             )}
+
+            {Object.entries(this.state.main_species).map((detail, idx) => {
+              const dontDisplay = [
+                'id',
+                'slug',
+                'status',
+                'rank',
+                'genus_id',
+                'image_url',
+                'year',
+                'bibliography',
+                'author',
+              ];
+              if (dontDisplay.includes(detail[0])) return null;
+
+              if (detail[1] && typeof detail[1] !== 'object') {
+                return (
+                  <div className='detail' key={idx}>
+                    <p className='detail__label'>{this.labelize(detail[0])}</p>
+                    <p className='detail__content'>{detail[1]}</p>
+                  </div>
+                );
+              } else {
+                return null;
+              }
+            })}
+            {console.log(this.state.main_species)}
+            {console.log(this.state.main_species.images)}
           </div>
         </div>
         {!this.state.loading && (
           <button
-            className="btn plant-details__raw-data-button"
+            className='btn plant-details__raw-data-button'
             onClick={this.toggleRawData}
           >
             View Raw Data
           </button>
         )}
         {this.state.raw_data && (
-          <div className="plant-details__raw-data">
+          <div className='plant-details__raw-data'>
             <a
               download={`${this.state.plant.scientific_name
                 .toLowerCase()
-                .replace(" ", "_")}.json`}
+                .replace(' ', '_')}.json`}
               href={`data:text/json;charset=utf-8,${encodeURIComponent(
                 JSON.stringify(this.state.plant)
               )}`}

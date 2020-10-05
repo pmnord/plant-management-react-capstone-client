@@ -3,15 +3,11 @@
 }
 
 .plant-details__innerdiv {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  align-items: start;
+  justify-content: start;
   width: 100%;
-}
-
-.plant-details__images {
-  margin-right: 0.5em;
-  text-align: right;
-  width: 50%;
 }
 
 .plant-details__img {
@@ -37,13 +33,9 @@
   background-color: hsl(73, 60%, 88%);
 }
 
-.plant-details__details {
-  text-align: left;
-}
-
 .detail__label {
   color: hsl(0, 0%, 45%);
-  font-size: .9rem;
+  font-size: 0.9rem;
   margin: 0;
   padding: 0;
 }
@@ -66,17 +58,14 @@
   text-align: center;
 }
 
-@media screen and (min-device-width: 814px) {
-  .plant-details__images {
-    display: flex;
-    flex-wrap: wrap;
-    width: 40%;
-    margin-right: 2em;
-    justify-content: flex-end;
-  }
+.plant-details__details {
+  height: 100%;
+  margin-top: 18.72px;
+}
 
+@media screen and (min-device-width: 814px) {
   .plant-details__img {
-    height: 14em;
+    height: 12rem;
     max-width: none;
     border: solid 1px var(--black);
     border-radius: 5px;

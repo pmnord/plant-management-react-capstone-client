@@ -23,7 +23,7 @@ class App extends React.Component {
     };
   }
 
-  // Keeps the Header component in sync with whether the user is logged in or not for conditional rendering purposes
+  // Keeps the Header component in sync with whether the user is logged in or not
   updateLoggedIn = (username) => {
     this.setState({ loggedIn: TokenService.hasToken(), username });
   };
@@ -62,11 +62,7 @@ class App extends React.Component {
                 path={'/garden'}
                 component={(router) => <GardenPage router={router} />}
               />
-              <PrivateRoute
-                exact
-                path={'/plant'}
-                component={PlantSearchPage}
-              />
+              <PrivateRoute exact path={'/plant'} component={PlantSearchPage} />
               <PrivateRoute
                 path={'/plant/:plant_id'}
                 component={(router) => <PlantDetailsPage router={router} />}

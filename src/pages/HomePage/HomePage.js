@@ -10,6 +10,7 @@ export default function HomeRoute(props) {
   return (
     <div className='HomeRoute'>
       <div className='HomeRoute__pitch'>
+        <h2>A world of plants at your fingertips</h2>
         <p>
           Build a collection of plants, explore a plant database, get in-depth
           information, and share your personal garden with other horticulture
