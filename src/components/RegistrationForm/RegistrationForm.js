@@ -14,18 +14,20 @@ export default class RegistrationForm extends React.Component {
     this.state = {
       username: '',
       password: '',
+      passwordConfirmation: '',
       submitting: false,
       error: null,
     };
   }
 
-  updateFormValue(input, value) {
-    this.setState({ [input]: value });
-  }
-
   handleFormSubmit = (e) => {
     e.preventDefault();
     this.setState({ error: null, submitting: true });
+
+    if (this.state.password !== this.state.passwordConfirmation) {
+      this.setState({ error: 'Passwords do not match', submitting: false });
+      return;
+    }
 
     const { username, password } = e.target;
     const newUser = {
@@ -94,6 +96,10 @@ export default class RegistrationForm extends React.Component {
       });
   }
 
+  updateFormValue(input, value) {
+    this.setState({ [input]: value });
+  }
+
   render() {
     return (
       <form className='registration__form' onSubmit={this.handleFormSubmit}>
@@ -129,6 +135,22 @@ export default class RegistrationForm extends React.Component {
             value={this.state.password}
             onChange={(e) =>
               this.updateFormValue(e.target.name, e.target.value)
+            }
+          />
+        </div>
+        <div>
+          <label htmlFor='password-confirmation'>
+            Confirm Password
+          </label>
+          <input
+          className="basic-input"
+            type='password'
+            name='password-confirmation'
+            minLength='6'
+            required
+            value={this.state.passwordConfirmation}
+            onChange={(e) =>
+              this.updateFormValue('passwordConfirmation', e.target.value)
             }
           />
         </div>
