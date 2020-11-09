@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Toolbar from './Toolbar';
+import TabBar from './TabBar';
 
-it('Renders the Toolbar component', () => {
+it('Renders the TabBar component', () => {
     const div = document.createElement('div');
 
-    ReactDOM.render(<Toolbar />, div);
+    ReactDOM.render(<TabBar />, div);
     ReactDOM.unmountComponentAtNode(div);
 });

@@ -1,9 +1,9 @@
-.toolbar {
+.tab-bar {
     display: flex;
     margin-bottom: 2rem;
 }
 
-.toolbar__tab {
+.tab-bar__tab {
     border: 1px solid var(--lightgray);
     border-bottom: none;
     height: 3rem;
@@ -21,7 +21,7 @@
   );
 }
 
-.toolbar__tab:hover {
+.tab-bar__tab:hover {
     cursor: pointer;
     background: linear-gradient(
     to bottom,
@@ -30,25 +30,25 @@
   );
 }
 
-.toolbar__tab[disabled]:hover {
+.tab-bar__tab[disabled]:hover {
     cursor: default;
 }
 
-.toolbar__tab[disabled] {
+.tab-bar__tab[disabled] {
     background: none;
 }
 
-.toolbar__tab--first {
+.tab-bar__tab--first {
     border-right: none;
 }
 
-.toolbar__filler {
+.tab-bar__filler {
     border-bottom: solid 1px var(--lightgray);
     width: 50%;
 }
 
 @media screen and (max-width: 813px) {
-  .toolbar__tab {
+  .tab-bar__tab {
       font-size: 1rem;
   }
 }
