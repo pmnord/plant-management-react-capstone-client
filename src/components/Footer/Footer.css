@@ -2,18 +2,19 @@
   font-size: 0.8em;
   width: 100%;
   text-align: center;
-
 }
 
 .footer p {
   margin: 1rem;
+  color: hsl(0, 0%, 50%);
 }
 
 .footer a {
-  color: hsl(120, 20%, 42%);
+  color: hsl(120, 20%, 62%);
 }
 
 .footer__source-svg {
   padding-right: 0.5rem;
-  color: hsl(120, 20%, 42%);
+  transform: translateY(4px);
+  color: hsl(120, 20%, 62%);
 }

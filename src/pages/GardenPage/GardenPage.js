@@ -1,11 +1,11 @@
-import React from "react";
-import ApiService from "../../services/apiService";
-import moment from "moment";
+import React from 'react';
+import ApiService from '../../services/apiService';
+import moment from 'moment';
 
 import './GardenPage.css';
 
-import PlantCard from "../../components/PlantCard/PlantCard";
-import Toolbar from "../../components/Toolbar/Toolbar";
+import PlantCard from '../../components/PlantCard/PlantCard';
+import TabBar from '../../components/TabBar/TabBar';
 
 // The Garden page renders a grid of a user's plants and provides ways to interact with those plants
 // It represents the current state of a user's plant collection in the database
@@ -55,7 +55,7 @@ export default class Garden extends React.Component {
 
   updateWatered = (idx) => {
     const newState = { plants: [...this.state.plants] };
-    newState.plants[idx].watered_date = moment().format("MMMM Do h:mm a");
+    newState.plants[idx].watered_date = moment().format('MMMM Do h:mm a');
     const newWateredDate = newState.plants[idx].watered_date;
     const plantInstanceId = newState.plants[idx].instance_id;
     const updateValues = {
@@ -102,22 +102,22 @@ export default class Garden extends React.Component {
     const { plants = [] } = this.state;
 
     return (
-      <div className="garden">
-        <Toolbar />
-          <div className="garden-filter">
-              <label htmlFor="garden-filter__input">
-                <strong>Filter:</strong>
-              </label>
-              <input
-                id="garden-filter__input"
-                name="garden-filter__input"
-                className="garden-filter__input"
-                type="text"
-                onChange={this.filterPlants}
-              />
-          </div>
+      <div className='garden'>
+        <TabBar />
+        <div className='garden-filter'>
+          <label htmlFor='garden-filter__input'>
+            <strong>Filter:</strong>
+          </label>
+          <input
+            id='garden-filter__input'
+            name='garden-filter__input'
+            className='garden-filter__input'
+            type='text'
+            onChange={this.filterPlants}
+          />
+        </div>
 
-        <section className="plant-grid">
+        <section className='plant-grid'>
           {plants.map((plant, idx) => (
             <PlantCard
               key={idx}
