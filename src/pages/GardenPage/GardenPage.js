@@ -21,7 +21,7 @@ export default class Garden extends React.Component {
   }
 
   // Retrieve a user's plants and set them in the component state
-  componentDidMount = () => {
+  componentDidMount() {
     this._isMounted = true;
     this._isMounted &&
       ApiService.getUserPlants()
@@ -31,29 +31,29 @@ export default class Garden extends React.Component {
             this.setState({ plants: plants, plantsCache: plants })
         )
         .catch((err) => this._isMounted && this.setState({ error: err }));
-  };
+  }
 
-  componentWillUnmount = () => {
+  componentWillUnmount() {
     this._isMounted = false;
-  };
+  }
 
-  updateNote = (e, idx) => {
+  updateNote(e, idx) {
     const newValue = e.target.value;
     const newState = { plants: [...this.state.plants] };
     newState.plants[idx].note = newValue;
 
     this.setState(newState);
-  };
+  }
 
-  updateDbNote = (e, instance_id) => {
+  updateDbNote(e, instance_id) {
     const updateValues = {
       note: e.target.value,
     };
 
     ApiService.updatePlantInstance(instance_id, updateValues);
-  };
+  }
 
-  updateWatered = (idx) => {
+  updateWatered(idx) {
     const newState = { plants: [...this.state.plants] };
     newState.plants[idx].watered_date = moment().format('MMMM Do h:mm a');
     const newWateredDate = newState.plants[idx].watered_date;
@@ -68,24 +68,24 @@ export default class Garden extends React.Component {
         but it would also create lag time between when the user clicks the button and when the value
         updates */
     ApiService.updatePlantInstance(plantInstanceId, updateValues);
-  };
+  }
 
-  addPlant = (newPlant) => {
+  addPlant(newPlant) {
     const newPlants = [...this.state.plants];
     newPlants.push(newPlant);
     const newState = { plants: newPlants };
     this.setState(newState);
-  };
+  }
 
-  deletePlant = (instanceId) => {
+  deletePlant(instanceId) {
     const plants = this.state.plants.filter(
       (plant) => plant.instance_id !== instanceId
     );
     this.setState({ plants });
-  };
+  }
 
   // Filters plants in the grid display without altering them
-  filterPlants = (e) => {
+  filterPlants(e) {
     const query = e.target.value.toLowerCase();
 
     const filteredPlants = this.state.plantsCache.filter((plant) =>
@@ -96,7 +96,7 @@ export default class Garden extends React.Component {
         : false
     );
     this.setState({ plants: filteredPlants });
-  };
+  }
 
   render() {
     const { plants = [] } = this.state;
