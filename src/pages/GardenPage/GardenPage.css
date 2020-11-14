@@ -22,6 +22,14 @@
   margin: 0 0.5rem;
 }
 
+.collection__collection-empty {
+  text-align: center;
+  line-height: 4rem;
+  font-size: 1.8rem;
+  color: hsl(0, 0%, 70%);
+  margin: 2rem;
+}
+
 @media screen and (min-width: 1121px) {
   .garden-filter__input {
     width: 20rem;

@@ -1,40 +1,31 @@
 import React from 'react';
-import ApiService from '../../services/apiService';
 import moment from 'moment';
 
 import './GardenPage.css';
 
-import PlantCard from '../../components/PlantCard/PlantCard';
-import TabBar from '../../components/TabBar/TabBar';
+import ApiService from '../../services/apiService.js';
+import PlantCard from '../../components/PlantCard/PlantCard.js';
+import TabBar from '../../components/TabBar/TabBar.js';
 
 // The Garden page renders a grid of a user's plants and provides ways to interact with those plants
-// It represents the current state of a user's plant collection in the database
 export default class Garden extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
+      loaded: false,
       plants: [],
       plantsCache: [],
     };
-    this._isMounted = false;
   }
 
   // Retrieve a user's plants and set them in the component state
   componentDidMount() {
-    this._isMounted = true;
-    this._isMounted &&
-      ApiService.getUserPlants()
-        .then(
-          (plants) =>
-            this._isMounted &&
-            this.setState({ plants: plants, plantsCache: plants })
-        )
-        .catch((err) => this._isMounted && this.setState({ error: err }));
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
+    ApiService.getUserPlants()
+      .then((plants) => {
+        this.setState({ plants: plants, plantsCache: plants, loaded: true });
+      })
+      .catch((err) => this.setState({ error: err }));
   }
 
   updateNote(e, idx) {
@@ -66,7 +57,7 @@ export default class Garden extends React.Component {
 
     /* It might be better to update the component state only once the API call goes through,
         but it would also create lag time between when the user clicks the button and when the value
-        updates */
+        updates EDIT: this approach is called 'optimistic updating' */
     ApiService.updatePlantInstance(plantInstanceId, updateValues);
   }
 
@@ -131,6 +122,12 @@ export default class Garden extends React.Component {
             />
           ))}
         </section>
+        {this.state.loaded && plants.length === 0 && (
+          <div className='collection__collection-empty'>
+            <h2>Your collection is empty</h2>
+            <h3>Add new plants with the Plant Search module</h3>
+          </div>
+        )}
       </div>
     );
   }
