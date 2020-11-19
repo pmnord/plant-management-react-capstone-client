@@ -5,7 +5,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import PlantSearchPage from './pages/PlantSearchPage/PlantSearchPage';
 import PlantDetailsPage from './pages/PlantDetailsPage/PlantDetailsPage';
-import GardenPage from './pages/GardenPage/GardenPage';
+import CollectionPage from './pages/CollectionPage/CollectionPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import HomePage from './pages/HomePage/HomePage';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
@@ -23,7 +23,7 @@ class App extends React.Component {
     };
   }
 
-  // Keeps the Header component in sync with whether the user is logged in or not
+  // Keeps the Header component in sync with whether the user is logged in or not for conditional rendering purposes
   updateLoggedIn = (username) => {
     this.setState({ loggedIn: TokenService.hasToken(), username });
   };
@@ -59,10 +59,14 @@ class App extends React.Component {
                 )}
               />
               <PrivateRoute
-                path={'/garden'}
-                component={(router) => <GardenPage router={router} />}
+                path={'/collection'}
+                component={(router) => <CollectionPage router={router} />}
               />
-              <PrivateRoute exact path={'/plant'} component={PlantSearchPage} />
+              <PrivateRoute
+                exact
+                path={'/plant'}
+                component={PlantSearchPage}
+              />
               <PrivateRoute
                 path={'/plant/:plant_id'}
                 component={(router) => <PlantDetailsPage router={router} />}

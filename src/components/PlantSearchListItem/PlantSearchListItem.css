@@ -22,13 +22,35 @@
   position: center;
 }
 
-.plant-search__list-item:nth-child(2n) {
-  background-color: hsl(0, 0%, 96%);
-}
-
 .plant-search__list-item__buttons {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
 }
+
+.plant-search__plant-names {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  font-size: 1rem;
+  width: fit-content;
+}
+
+.plant-search__plant-names div {
+  margin: 0.5rem 1rem;
+}
+
+.plant-search__plant-names p {
+  margin: 0;
+}
+
+.plant-names__label {
+  font-size: 0.9rem;
+  color: hsl(0, 0%, 45%);
+}
+
+.plant-names__name {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+

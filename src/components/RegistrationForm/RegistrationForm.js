@@ -1,10 +1,10 @@
-import React from 'react';
-import config from '../../config';
+import React from "react";
+import config from "../../config";
 
-import './RegistrationForm.css';
+import "./RegistrationForm.css";
 
-import TokenService from '../../services/tokenService';
-import Tooltip from '../Tooltip/Tooltip';
+import TokenService from "../../services/tokenService";
+import Tooltip from "../Tooltip/Tooltip";
 
 // Handles new user registration
 export default class RegistrationForm extends React.Component {
@@ -12,33 +12,35 @@ export default class RegistrationForm extends React.Component {
     super(props);
 
     this.state = {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
+      passwordConfirmation: "",
       submitting: false,
       error: null,
     };
-  }
-
-  updateFormValue(input, value) {
-    this.setState({ [input]: value });
   }
 
   handleFormSubmit = (e) => {
     e.preventDefault();
     this.setState({ error: null, submitting: true });
 
+    if (this.state.password !== this.state.passwordConfirmation) {
+      this.setState({ error: "Passwords do not match", submitting: false });
+      return;
+    }
+
     const { username, password } = e.target;
     const newUser = {
       username: username.value,
       password: password.value,
-      email: '',
+      email: "",
     };
 
     fetch(`${config.API_ENDPOINT}/user`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'api-key': config.API_KEY,
-        'content-type': 'application/json',
+        "api-key": config.API_KEY,
+        "content-type": "application/json",
       },
       body: JSON.stringify(newUser),
     })
@@ -49,31 +51,31 @@ export default class RegistrationForm extends React.Component {
         return res.json();
       })
       .then((resJson) => {
-        username.value = '';
-        password.value = '';
+        username.value = "";
+        password.value = "";
 
         return this.onRegistrationSuccess(newUser);
       })
       .catch((err) => {
         console.log(err);
         this.setState({
-          error: err.error || 'Unable to register at this time',
+          error: err.error || "Unable to register at this time",
           submitting: false,
         });
       });
   };
 
-  onRegistrationSuccess(newUser) {
+  onRegistrationSuccess = (newUser) => {
     const credentials = {
       username: newUser.username,
       password: newUser.password,
     };
 
     fetch(`${config.API_ENDPOINT}/auth/login`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'api-key': config.API_KEY,
-        'content-type': 'application/json',
+        "api-key": config.API_KEY,
+        "content-type": "application/json",
       },
       body: JSON.stringify(credentials),
     })
@@ -84,26 +86,30 @@ export default class RegistrationForm extends React.Component {
       .then((res) => {
         TokenService.setToken(res.authToken);
         this.props.updateLoggedIn();
-        this.props.router.history.push(`/garden`);
+        this.props.router.history.push(`/collection`);
       })
       .catch((err) => {
         this.setState({
-          error: err.error || 'Unable to register at this time',
+          error: err.error || "Unable to register at this time",
           submitting: false,
         });
       });
-  }
+  };
+
+  updateFormValue = (input, value) => {
+    this.setState({ [input]: value });
+  };
 
   render() {
     return (
-      <form className='registration__form' onSubmit={this.handleFormSubmit}>
+      <form className="registration__form" onSubmit={this.handleFormSubmit}>
         <h2>Create an Account</h2>
         <div>
-          <label htmlFor='username'>Username</label>
+          <label htmlFor="username">Username</label>
           <input
-          className="basic-input"
-            type='text'
-            name='username'
+            className="basic-input"
+            type="text"
+            name="username"
             required
             value={this.state.username}
             onChange={(e) =>
@@ -112,19 +118,19 @@ export default class RegistrationForm extends React.Component {
           />
         </div>
         <div>
-          <label htmlFor='password'>
+          <label htmlFor="password">
             Password
-            <Tooltip content='Passwords are stored encrypted and never visible to FancyPlants'>
-              <span role='img' aria-label='password tooltip'>
+            <Tooltip content="Passwords are stored encrypted and never visible to FancyPlants">
+              <span role="img" aria-label="password tooltip">
                 💬
               </span>
             </Tooltip>
           </label>
           <input
-          className="basic-input"
-            type='password'
-            name='password'
-            minLength='6'
+            className="basic-input"
+            type="password"
+            name="password"
+            minLength="6"
             required
             value={this.state.password}
             onChange={(e) =>
@@ -132,10 +138,24 @@ export default class RegistrationForm extends React.Component {
             }
           />
         </div>
+        <div>
+          <label htmlFor="password-confirmation">Confirm Password</label>
+          <input
+            className="basic-input"
+            type="password"
+            name="password-confirmation"
+            minLength="6"
+            required
+            value={this.state.passwordConfirmation}
+            onChange={(e) =>
+              this.updateFormValue("passwordConfirmation", e.target.value)
+            }
+          />
+        </div>
         <button className="btn" disabled={this.state.submitting}>
-          {this.state.submitting ? 'Loading...' : 'Register'}
+          {this.state.submitting ? "Loading..." : "Register"}
         </button>
-        <div className='error'>{this.state.error}</div>
+        <div className="error">{this.state.error}</div>
       </form>
     );
   }

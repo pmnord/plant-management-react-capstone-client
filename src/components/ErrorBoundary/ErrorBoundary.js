@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import './ErrorBoundary.css';
+import "./ErrorBoundary.css";
 
-// Any class component with a componentDidCatch() lifecycle method
-// or static getDerivedStateFromError() can act as an error boundary.
+/* Any class component with a componentDidCatch() lifecycle method
+   or static getDerivedStateFromError() can act as an error boundary. */
 
-export default class ErrorBoundary extends React.Component {
+class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,14 +36,14 @@ export default class ErrorBoundary extends React.Component {
 
     if (this.state.hasError) {
       return (
-        <div className='error-boundary'>
+        <div className="error-boundary">
           <h2>Whoops! Something went wrong.</h2>
-          <div className='koala'>
-            <div className='koala__ear koala__ear--1'></div>
-            <div className='koala__ear koala__ear--2'></div>
-            <div className='koala__eye koala__eye--1'></div>
-            <div className='koala__eye koala__eye--2'></div>
-            <div className='koala__nose'></div>
+          <div className="koala">
+            <div className="koala__ear koala__ear--1"></div>
+            <div className="koala__ear koala__ear--2"></div>
+            <div className="koala__eye koala__eye--1"></div>
+            <div className="koala__eye koala__eye--2"></div>
+            <div className="koala__nose"></div>
           </div>
           {getKoalaPun()}
         </div>
@@ -52,3 +52,5 @@ export default class ErrorBoundary extends React.Component {
     return this.props.children || null;
   }
 }
+
+export default ErrorBoundary;

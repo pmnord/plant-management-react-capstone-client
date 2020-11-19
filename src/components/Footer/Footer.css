@@ -2,18 +2,37 @@
   font-size: 0.8em;
   width: 100%;
   text-align: center;
-  margin-top: 3rem;
 }
 
 .footer p {
-  margin: 1rem;
+  margin: 1rem 0;
 }
 
 .footer a {
   color: hsl(120, 20%, 42%);
 }
 
-.footer__source-svg {
-  padding-right: 0.5rem;
-  color: hsl(120, 20%, 42%);
+.footer__source {
+  display: flex;
+  justify-content: center;
+}
+
+.source__a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.source__p {
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  margin-bottom: 1.05rem;
+  margin-right: 0.2rem;
+}
+
+.source__svg {
+  height: 1.15rem;
+  padding-top: 1px;
 }

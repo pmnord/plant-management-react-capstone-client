@@ -1,0 +1,35 @@
+.garden {
+  width: 100%;
+}
+
+.plant-grid {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.garden-filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+
+.garden-filter__input {
+  height: 1.3rem;
+  border-radius: 5px;
+  margin: 0 0.5rem;
+}
+
+@media screen and (min-width: 1121px) {
+  .garden-filter__input {
+    width: 20rem;
+  }
+}
+
+@media screen and (max-width: 1120px) {
+  .garden-filter__input {
+    width: 15em;
+  }
+}

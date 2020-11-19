@@ -4,7 +4,7 @@ import TokenService from "../../services/tokenService";
 
 import "./PlantCard.css";
 
-// Represents a Plant in the User's garden and provides interactions
+// Represents a Plant in the User's collection and provides interactions
 export default function PlantCard(props) {
   function handleDelete(plant_id) {
     return fetch(`${config.API_ENDPOINT}/garden/${plant_id}`, {
