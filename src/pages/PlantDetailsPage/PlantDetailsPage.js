@@ -207,6 +207,8 @@ export default class PlantDetails extends React.Component {
                         ))}
                     </div>
                   );
+                } else {
+                  return null;
                 }
               }
             )}

@@ -1,18 +1,18 @@
-import React from 'react';
-import { Switch } from 'react-router-dom';
+import React from "react";
+import { Switch, Route } from "react-router-dom";
 
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import PlantSearchPage from './pages/PlantSearchPage/PlantSearchPage';
-import PlantDetailsPage from './pages/PlantDetailsPage/PlantDetailsPage';
-import CollectionPage from './pages/CollectionPage/CollectionPage';
-import LoginPage from './pages/LoginPage/LoginPage';
-import HomePage from './pages/HomePage/HomePage';
-import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import PlantSearchPage from "./pages/PlantSearchPage/PlantSearchPage";
+import PlantDetailsPage from "./pages/PlantDetailsPage/PlantDetailsPage";
+import CollectionPage from "./pages/CollectionPage/CollectionPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import HomePage from "./pages/HomePage/HomePage";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 
-import PrivateRoute from './routes/PrivateRoute';
-import PublicOnlyRoute from './routes/PublicOnlyRoute';
-import TokenService from './services/tokenService';
+import PrivateRoute from "./routes/PrivateRoute";
+import PublicOnlyRoute from "./routes/PublicOnlyRoute";
+import TokenService from "./services/tokenService";
 
 class App extends React.Component {
   constructor(props) {
@@ -30,17 +30,17 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='app'>
+      <div className="app">
         <Header
           username={this.state.username}
           handleLogout={this.updateLoggedIn}
         />
-        <main className='main'>
+        <main className="main">
           <ErrorBoundary>
             <Switch>
               <PublicOnlyRoute
                 exact
-                path={'/'}
+                path={"/"}
                 component={(router) => (
                   <HomePage
                     updateLoggedIn={this.updateLoggedIn}
@@ -50,7 +50,7 @@ class App extends React.Component {
               />
               <PublicOnlyRoute
                 exact
-                path={'/login'}
+                path={"/login"}
                 component={(router) => (
                   <LoginPage
                     updateLoggedIn={this.updateLoggedIn}
@@ -59,17 +59,18 @@ class App extends React.Component {
                 )}
               />
               <PrivateRoute
-                path={'/collection'}
+                path={"/collection"}
                 component={(router) => <CollectionPage router={router} />}
               />
+              <PrivateRoute exact path={"/plant"} component={PlantSearchPage} />
               <PrivateRoute
-                exact
-                path={'/plant'}
-                component={PlantSearchPage}
-              />
-              <PrivateRoute
-                path={'/plant/:plant_id'}
+                path={"/plant/:plant_id"}
                 component={(router) => <PlantDetailsPage router={router} />}
+              />
+              <Route
+                exact
+                path="/__ErrorBoundary"
+                component={() => <ErrorBoundary error="foo" />}
               />
             </Switch>
           </ErrorBoundary>

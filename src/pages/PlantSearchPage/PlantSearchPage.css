@@ -20,6 +20,7 @@
   margin: 0 auto;
   max-width: 30rem;
   display: flex;
+  justify-content: center;
   align-items: flex-end;
 }
 

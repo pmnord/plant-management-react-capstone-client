@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./ErrorBoundary.css";
 
@@ -17,27 +18,15 @@ class ErrorBoundary extends React.Component {
     return { hasError: true };
   }
 
+  static getDerivedStateFromProps(props) {
+    if (props.error) return { hasError: true };
+  }
+
   render() {
-    const koalaPuns = [
-      <h3>
-        (not exactly a <em>koalaty</em> user experience, sorry!)
-      </h3>,
-      <h3>
-        (hopefully this doesn't reflect poorly on my <em>koalafications</em>...)
-      </h3>,
-      <h3>
-        (looks like I need to have a chat with <em>koalaty</em> assurance)
-      </h3>,
-    ];
-
-    const getKoalaPun = () => {
-      return koalaPuns[Math.floor(Math.random() * koalaPuns.length)];
-    };
-
     if (this.state.hasError) {
       return (
         <div className="error-boundary">
-          <h2>Whoops! Something went wrong.</h2>
+          <h2>Something went wrong.</h2>
           <div className="koala">
             <div className="koala__ear koala__ear--1"></div>
             <div className="koala__ear koala__ear--2"></div>
@@ -45,7 +34,8 @@ class ErrorBoundary extends React.Component {
             <div className="koala__eye koala__eye--2"></div>
             <div className="koala__nose"></div>
           </div>
-          {getKoalaPun()}
+          <Link to="/">Go Home</Link>
+          {this.props.error === 'foo' && <p>This page is only for debugging purposes.<br/>No actual error occured.</p>}
         </div>
       );
     }

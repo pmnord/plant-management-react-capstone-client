@@ -33,12 +33,7 @@ export default function PlantSearchListItem(props) {
       .catch((res) => console.log(res.error));
   }
 
-  function capitalize(str) {
-    return str
-      .split(" ")
-      .map((word) => word[0].toUpperCase() + word.slice(1))
-      .join(" ");
-  }
+  
 
   return (
     <li className="plant-search__list-item PlantSearchListItem">
